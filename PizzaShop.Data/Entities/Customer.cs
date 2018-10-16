@@ -5,7 +5,7 @@ namespace PizzaShop.Data.Entities
     public class Customer : Entity
     {
         [Key]
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -22,7 +22,7 @@ namespace PizzaShop.Data.Entities
 
         [Required]
         [DataType(DataType.PostalCode)]
-        public string ZIP { get; set; }
+        public string Zip { get; set; }
 
         [Required]
         [MaxLength(100)]

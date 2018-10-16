@@ -7,7 +7,7 @@ namespace PizzaShop.Data.Entities
     public class Order : Entity
     {
         [Key]
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
 
         [Required]
         public virtual Customer Customer { get; set; }
@@ -16,7 +16,8 @@ namespace PizzaShop.Data.Entities
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public bool IsDelivery { get; set; }
 
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
