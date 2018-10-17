@@ -16,6 +16,7 @@ namespace PizzaShop.Data.Entities
         [Required]
         public double Price { get; set; }
 
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PizzaShop.Data.Entities
 {
@@ -14,6 +16,9 @@ namespace PizzaShop.Data.Entities
         [Required]
         public bool IsVegetarian { get; set; }
 
+        public ICollection<PizzaIngredient> PizzaIngredients { get; set; }
+
+        [EnumDataType(typeof(IngredientType))]
         public IngredientType Type { get; set; }
     }
 
@@ -23,9 +28,10 @@ namespace PizzaShop.Data.Entities
         Cheese = 1,
         Meat = 2,
         Fish = 3,
-        Spices = 4,
+        Condiments = 4,
         Vegetables = 5,
         Fruit = 6,
         Sauce = 7,
+        Herbs = 8
     }
 }

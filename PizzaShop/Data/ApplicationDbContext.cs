@@ -11,10 +11,16 @@ namespace PizzaShop.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
     }
 }
