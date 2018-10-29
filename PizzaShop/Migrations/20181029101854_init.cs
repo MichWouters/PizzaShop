@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PizzaShop.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -290,6 +290,48 @@ namespace PizzaShop.Migrations
                         principalTable: "Pizzas",
                         principalColumn: "PizzaId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Ingredients",
+                columns: new[] { "IngredientId", "DateCreated", "DateModified", "IsVegetarian", "ModifiedBy", "Name", "Type" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2018, 10, 29, 11, 18, 53, 964, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Tomato", 6 },
+                    { 2, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Mozarella", 1 },
+                    { 3, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Salami", 2 },
+                    { 4, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Thyme", 4 },
+                    { 5, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Chicken", 2 },
+                    { 6, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Anchovie", 3 },
+                    { 7, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Onion", 5 },
+                    { 8, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "BBQ Sauce", 7 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pizzas",
+                columns: new[] { "PizzaId", "DateCreated", "DateModified", "Image", "ModifiedBy", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Margherita", 4.99 },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Pepperoni", 6.99 },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Meat Lovers", 8.99 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PizzaIngredients",
+                columns: new[] { "Id", "IngredientId", "PizzaId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 2, 1 },
+                    { 3, 1, 2 },
+                    { 4, 2, 2 },
+                    { 5, 3, 2 },
+                    { 6, 1, 3 },
+                    { 7, 2, 3 },
+                    { 8, 3, 3 },
+                    { 9, 4, 3 },
+                    { 10, 5, 3 }
                 });
 
             migrationBuilder.CreateIndex(

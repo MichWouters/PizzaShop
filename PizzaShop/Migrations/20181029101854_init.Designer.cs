@@ -10,8 +10,8 @@ using PizzaShop.Data;
 namespace PizzaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181029095502_initial")]
-    partial class initial
+    [Migration("20181029101854_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -252,6 +252,17 @@ namespace PizzaShop.Migrations
                     b.HasKey("IngredientId");
 
                     b.ToTable("Ingredients");
+
+                    b.HasData(
+                        new { IngredientId = 1, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 964, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
+                        new { IngredientId = 2, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
+                        new { IngredientId = 3, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
+                        new { IngredientId = 4, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
+                        new { IngredientId = 5, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
+                        new { IngredientId = 6, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
+                        new { IngredientId = 7, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
+                        new { IngredientId = 8, DateCreated = new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
+                    );
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.Order", b =>
@@ -331,6 +342,12 @@ namespace PizzaShop.Migrations
                     b.HasKey("PizzaId");
 
                     b.ToTable("Pizzas");
+
+                    b.HasData(
+                        new { PizzaId = 1, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Margherita", Price = 4.99 },
+                        new { PizzaId = 2, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Pepperoni", Price = 6.99 },
+                        new { PizzaId = 3, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Meat Lovers", Price = 8.99 }
+                    );
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.PizzaIngredient", b =>
@@ -350,6 +367,19 @@ namespace PizzaShop.Migrations
                     b.HasIndex("PizzaId");
 
                     b.ToTable("PizzaIngredients");
+
+                    b.HasData(
+                        new { Id = 1, IngredientId = 1, PizzaId = 1 },
+                        new { Id = 2, IngredientId = 2, PizzaId = 1 },
+                        new { Id = 3, IngredientId = 1, PizzaId = 2 },
+                        new { Id = 4, IngredientId = 2, PizzaId = 2 },
+                        new { Id = 5, IngredientId = 3, PizzaId = 2 },
+                        new { Id = 6, IngredientId = 1, PizzaId = 3 },
+                        new { Id = 7, IngredientId = 2, PizzaId = 3 },
+                        new { Id = 8, IngredientId = 3, PizzaId = 3 },
+                        new { Id = 9, IngredientId = 4, PizzaId = 3 },
+                        new { Id = 10, IngredientId = 5, PizzaId = 3 }
+                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Security.Authentication.ExtendedProtection;
-using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace PizzaShop.Data.Entities
