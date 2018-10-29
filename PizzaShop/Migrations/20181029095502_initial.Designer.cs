@@ -10,8 +10,8 @@ using PizzaShop.Data;
 namespace PizzaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181015195957_newDB")]
-    partial class newDB
+    [Migration("20181029095502_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -188,101 +188,120 @@ namespace PizzaShop.Migrations
 
             modelBuilder.Entity("PizzaShop.Data.Entities.Customer", b =>
                 {
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("CustomerId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(255);
 
                     b.Property<int>("Age");
 
                     b.Property<string>("City")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<string>("Email");
+                    b.Property<DateTime>("DateModified");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100);
 
                     b.Property<int>("Gender");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("Phone");
 
-                    b.Property<string>("ZIP")
+                    b.Property<string>("Zip")
                         .IsRequired();
 
-                    b.HasKey("CustomerID");
+                    b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.Ingredient", b =>
                 {
-                    b.Property<int>("IngredientID")
+                    b.Property<int>("IngredientId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateCreated");
 
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<bool>("IsVegetarian");
 
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
-                    b.Property<int?>("PizzaId");
+                    b.Property<int>("Type");
 
-                    b.HasKey("IngredientID");
-
-                    b.HasIndex("PizzaId");
+                    b.HasKey("IngredientId");
 
                     b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.Order", b =>
                 {
-                    b.Property<int>("OrderID")
+                    b.Property<int>("OrderId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerID");
+                    b.Property<int>("CustomerId");
 
                     b.Property<DateTime>("Date");
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.HasKey("OrderID");
+                    b.Property<DateTime>("DateModified");
 
-                    b.HasIndex("CustomerID");
+                    b.Property<bool>("IsDelivery");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(100);
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.OrderDetail", b =>
                 {
-                    b.Property<int>("OrderDetailID")
+                    b.Property<int>("OrderDetailId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Amount");
 
-                    b.Property<int>("CustomerID");
-
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<bool>("IdDelivery");
+                    b.Property<DateTime>("DateModified");
 
-                    b.Property<int?>("OrderID");
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("OrderId");
 
                     b.Property<int>("PizzaId");
 
-                    b.HasKey("OrderDetailID");
+                    b.HasKey("OrderDetailId");
 
-                    b.HasIndex("CustomerID");
-
-                    b.HasIndex("OrderID");
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("PizzaId");
 
@@ -297,7 +316,12 @@ namespace PizzaShop.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
+                    b.Property<DateTime>("DateModified");
+
                     b.Property<string>("Image");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -307,6 +331,25 @@ namespace PizzaShop.Migrations
                     b.HasKey("PizzaId");
 
                     b.ToTable("Pizzas");
+                });
+
+            modelBuilder.Entity("PizzaShop.Data.Entities.PizzaIngredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IngredientId");
+
+                    b.Property<int>("PizzaId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IngredientId");
+
+                    b.HasIndex("PizzaId");
+
+                    b.ToTable("PizzaIngredients");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -354,34 +397,35 @@ namespace PizzaShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("PizzaShop.Data.Entities.Ingredient", b =>
-                {
-                    b.HasOne("PizzaShop.Data.Entities.Pizza")
-                        .WithMany("Ingredients")
-                        .HasForeignKey("PizzaId");
-                });
-
             modelBuilder.Entity("PizzaShop.Data.Entities.Order", b =>
                 {
                     b.HasOne("PizzaShop.Data.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerID")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PizzaShop.Data.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("PizzaShop.Data.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("PizzaShop.Data.Entities.Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderID");
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("PizzaShop.Data.Entities.Pizza", "Pizza")
                         .WithMany()
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PizzaShop.Data.Entities.PizzaIngredient", b =>
+                {
+                    b.HasOne("PizzaShop.Data.Entities.Ingredient")
+                        .WithMany("PizzaIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PizzaShop.Data.Entities.Pizza")
+                        .WithMany("PizzaIngredients")
                         .HasForeignKey("PizzaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

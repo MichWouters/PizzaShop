@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PizzaShop.Migrations
 {
-    public partial class newDB : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,20 +52,40 @@ namespace PizzaShop.Migrations
                 columns: table => new
                 {
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    CustomerID = table.Column<int>(nullable: false)
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
+                    CustomerId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
                     Age = table.Column<int>(nullable: false),
                     Gender = table.Column<int>(nullable: false),
-                    Address = table.Column<string>(nullable: false),
-                    ZIP = table.Column<string>(nullable: false),
-                    City = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(maxLength: 255, nullable: false),
+                    Zip = table.Column<string>(nullable: false),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
                     Phone = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.CustomerID);
+                    table.PrimaryKey("PK_Customers", x => x.CustomerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredients",
+                columns: table => new
+                {
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
+                    IngredientId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    IsVegetarian = table.Column<bool>(nullable: false),
+                    Type = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredients", x => x.IngredientId);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,6 +93,8 @@ namespace PizzaShop.Migrations
                 columns: table => new
                 {
                     DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
                     PizzaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
@@ -195,42 +217,49 @@ namespace PizzaShop.Migrations
                 columns: table => new
                 {
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false)
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
+                    OrderId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerID = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false)
+                    CustomerId = table.Column<int>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    IsDelivery = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.OrderID);
+                    table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerID",
-                        column: x => x.CustomerID,
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "CustomerID",
+                        principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredients",
+                name: "PizzaIngredients",
                 columns: table => new
                 {
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    IngredientID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false),
-                    IsVegetarian = table.Column<bool>(nullable: false),
-                    PizzaId = table.Column<int>(nullable: true)
+                    PizzaId = table.Column<int>(nullable: false),
+                    IngredientId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredients", x => x.IngredientID);
+                    table.PrimaryKey("PK_PizzaIngredients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredients_Pizzas_PizzaId",
+                        name: "FK_PizzaIngredients_Ingredients_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredients",
+                        principalColumn: "IngredientId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PizzaIngredients_Pizzas_PizzaId",
                         column: x => x.PizzaId,
                         principalTable: "Pizzas",
                         principalColumn: "PizzaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -238,28 +267,22 @@ namespace PizzaShop.Migrations
                 columns: table => new
                 {
                     DateCreated = table.Column<DateTime>(nullable: false),
-                    OrderDetailID = table.Column<int>(nullable: false)
+                    DateModified = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
+                    OrderDetailId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CustomerID = table.Column<int>(nullable: false),
                     PizzaId = table.Column<int>(nullable: false),
                     Amount = table.Column<int>(nullable: false),
-                    IdDelivery = table.Column<bool>(nullable: false),
-                    OrderID = table.Column<int>(nullable: true)
+                    OrderId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailID);
+                    table.PrimaryKey("PK_OrderDetails", x => x.OrderDetailId);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_Customers_CustomerID",
-                        column: x => x.CustomerID,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderDetails_Orders_OrderID",
-                        column: x => x.OrderID,
+                        name: "FK_OrderDetails_Orders_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "OrderID",
+                        principalColumn: "OrderId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Pizzas_PizzaId",
@@ -309,19 +332,9 @@ namespace PizzaShop.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_PizzaId",
-                table: "Ingredients",
-                column: "PizzaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_CustomerID",
+                name: "IX_OrderDetails_OrderId",
                 table: "OrderDetails",
-                column: "CustomerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderDetails_OrderID",
-                table: "OrderDetails",
-                column: "OrderID");
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_PizzaId",
@@ -329,9 +342,19 @@ namespace PizzaShop.Migrations
                 column: "PizzaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerID",
+                name: "IX_Orders_CustomerId",
                 table: "Orders",
-                column: "CustomerID");
+                column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PizzaIngredients_IngredientId",
+                table: "PizzaIngredients",
+                column: "IngredientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PizzaIngredients_PizzaId",
+                table: "PizzaIngredients",
+                column: "PizzaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -352,10 +375,10 @@ namespace PizzaShop.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "OrderDetails");
 
             migrationBuilder.DropTable(
-                name: "OrderDetails");
+                name: "PizzaIngredients");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -365,6 +388,9 @@ namespace PizzaShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "Pizzas");
