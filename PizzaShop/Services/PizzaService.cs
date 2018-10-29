@@ -16,11 +16,9 @@ namespace PizzaShop.Services
 
         public PizzaViewModel GetPizzaWithIngredients(int id)
         {
-            PizzaViewModel model = new PizzaViewModel
-            {
-                Pizza = _pizzaRepo.GetEntity(id),
-                Ingredients = _ingredientRepo.GetIngredientsForPizza(id)
-            };
+            PizzaViewModel model = new PizzaViewModel();
+            model.Pizza = _pizzaRepo.GetEntity(id);
+            model.Ingredients = _ingredientRepo.GetIngredientsForPizza(id);
 
             return model;
         }

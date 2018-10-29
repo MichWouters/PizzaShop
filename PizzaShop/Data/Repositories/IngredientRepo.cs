@@ -50,7 +50,7 @@ namespace PizzaShop.Data.Repositories
 
         IEnumerable<Ingredient> IIngredientRepo.GetIngredientsForPizza(int id)
         {
-            var result = _context.Ingredients.Join(_context.Pizzas,
+            var result = _context.Ingredients.Join(_context.Pizzas.Where(x => x.PizzaId == id),
                 x => x.IngredientId,
                 y => y.PizzaId, (y, x) => y)
                 .ToList();
