@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PizzaShop.Data.Repositories
 {
-    public class IngredientRepo : IRepository<Ingredient>
+    public class IngredientRepo : IIngredientRepo
     {
         private readonly ApplicationDbContext _context;
 
@@ -46,6 +46,16 @@ namespace PizzaShop.Data.Repositories
 
             _context.Ingredients.Update(entity);
             return _context.SaveChanges();
+        }
+
+        IEnumerable<Ingredient> IIngredientRepo.GetIngredientsForPizza(int id)
+        {
+            var result = _context.Ingredients.Join(_context.Pizzas,
+                x => x.IngredientId,
+                y => y.PizzaId, (y, x) => y)
+                .ToList();
+
+            return null;
         }
     }
 }
