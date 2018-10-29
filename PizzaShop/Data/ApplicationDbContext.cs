@@ -15,8 +15,18 @@ namespace PizzaShop.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            SeedData(builder);
+        }
 
-            // Seed Data
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
+
+        private void SeedData(ModelBuilder builder)
+        {
             builder.Entity<Ingredient>().HasData(
                 new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = IngredientType.Fruit, DateCreated = DateTime.Now },
                 new Ingredient { IngredientId = 2, Name = "Mozarella", IsVegetarian = true, Type = IngredientType.Cheese, DateCreated = DateTime.Now },
@@ -49,14 +59,5 @@ namespace PizzaShop.Data
                 new PizzaIngredient { Id = 10, PizzaId = 3, IngredientId = 5 }
                 );
         }
-
-        // Set Database Tables
-        public DbSet<Customer> Customers { get; set; }
-
-        public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Pizza> Pizzas { get; set; }
-        public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
     }
 }
