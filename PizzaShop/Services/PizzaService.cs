@@ -1,5 +1,6 @@
 ﻿using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
+using System.Linq;
 
 namespace PizzaShop.Services
 {
@@ -18,7 +19,15 @@ namespace PizzaShop.Services
         {
             PizzaViewModel model = new PizzaViewModel();
             model.Pizza = _pizzaRepo.GetPizzaWithIngredients(id);
-            model.Ingredients = _ingredientRepo.GetIngredientsForPizza(id);
+
+            if (model.Pizza.PizzaIngredients == null || model.Pizza.PizzaIngredients.Count == 0 )
+            {
+                model.Ingredients = _ingredientRepo.GetIngredientsForPizza(id);
+            }
+            else
+            {
+                model.Ingredients = model.Pizza.PizzaIngredients.Select(x => x.Ingredient).ToList();
+            }
 
             return model;
         }
