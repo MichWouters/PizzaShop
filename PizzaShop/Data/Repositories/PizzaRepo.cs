@@ -44,6 +44,7 @@ namespace PizzaShop.Data.Repositories
                 entity = GetEntity(id);
             }
 
+            entity.DateModified = System.DateTime.Now;
             _context.Pizzas.Update(entity);
             return _context.SaveChanges();
         }
