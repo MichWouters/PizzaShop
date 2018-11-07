@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaShop.Data;
 
 namespace PizzaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181029143731_lazyloading")]
+    partial class lazyloading
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,14 +254,14 @@ namespace PizzaShop.Migrations
                     b.ToTable("Ingredients");
 
                     b.HasData(
-                        new { IngredientId = 1, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 243, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
-                        new { IngredientId = 2, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
-                        new { IngredientId = 3, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
-                        new { IngredientId = 4, DateCreated = new DateTime(2018, 10, 30, 9, 43, 40, 245, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
-                        new { IngredientId = 5, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
-                        new { IngredientId = 6, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
-                        new { IngredientId = 7, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
-                        new { IngredientId = 8, DateCreated = new DateTime(2018, 10, 30, 10, 43, 40, 245, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
+                        new { IngredientId = 1, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 650, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
+                        new { IngredientId = 2, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
+                        new { IngredientId = 3, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
+                        new { IngredientId = 4, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
+                        new { IngredientId = 5, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
+                        new { IngredientId = 6, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
+                        new { IngredientId = 7, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
+                        new { IngredientId = 8, DateCreated = new DateTime(2018, 10, 29, 15, 37, 31, 651, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
                     );
                 });
 

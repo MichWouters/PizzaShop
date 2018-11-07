@@ -18,6 +18,7 @@ namespace PizzaShop.Data
             SeedData(builder);
         }
 
+        // Database Tables
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -25,13 +26,14 @@ namespace PizzaShop.Data
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
 
+        // Fill Database with sample data
         private void SeedData(ModelBuilder builder)
         {
             builder.Entity<Ingredient>().HasData(
-                new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = IngredientType.Fruit, DateCreated = DateTime.Now },
+                new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = IngredientType.Fruit, DateCreated = DateTime.Now, },
                 new Ingredient { IngredientId = 2, Name = "Mozarella", IsVegetarian = true, Type = IngredientType.Cheese, DateCreated = DateTime.Now },
                 new Ingredient { IngredientId = 3, Name = "Salami", IsVegetarian = false, Type = IngredientType.Meat, DateCreated = DateTime.Now },
-                new Ingredient { IngredientId = 4, Name = "Thyme", IsVegetarian = true, Type = IngredientType.Condiments, DateCreated = DateTime.Now },
+                new Ingredient { IngredientId = 4, Name = "Thyme", IsVegetarian = true, Type = IngredientType.Condiments, DateCreated = DateTime.Now.ToUniversalTime() },
                 new Ingredient { IngredientId = 5, Name = "Chicken", IsVegetarian = false, Type = IngredientType.Meat, DateCreated = DateTime.Now },
                 new Ingredient { IngredientId = 6, Name = "Anchovie", IsVegetarian = true, Type = IngredientType.Fish, DateCreated = DateTime.Now },
                 new Ingredient { IngredientId = 7, Name = "Onion", IsVegetarian = true, Type = IngredientType.Vegetables, DateCreated = DateTime.Now },
