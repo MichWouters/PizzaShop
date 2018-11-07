@@ -5,6 +5,7 @@ namespace PizzaShop.Data.Repositories
 {
     public interface IIngredientRepo: IRepository<Ingredient>
     {
+        [System.Obsolete("Use IPizzaRepo.GetPizzaWithIngredients instead")]
         IEnumerable<Ingredient> GetIngredientsForPizza(int id);
     }
 }

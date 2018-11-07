@@ -1,4 +1,5 @@
-﻿using PizzaShop.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaShop.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -34,6 +35,15 @@ namespace PizzaShop.Data.Repositories
         public Pizza GetEntity(int id)
         {
             Pizza entity = _context.Pizzas.Find(id);
+            return entity;
+        }
+
+        public Pizza GetPizzaWithIngredients(int id)
+        {
+            Pizza entity = _context.Pizzas.Include(pizza => pizza.PizzaIngredients)
+                .ThenInclude(ingredient => ingredient.Ingredient)
+                .Where(x => x.PizzaId == id)
+                .First();
             return entity;
         }
 

@@ -18,6 +18,7 @@ namespace PizzaShop.Data
             SeedData(builder);
         }
 
+        // Database Tables
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -25,6 +26,7 @@ namespace PizzaShop.Data
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
 
+        // Fill Database with sample data
         private void SeedData(ModelBuilder builder)
         {
             builder.Entity<Ingredient>().HasData(

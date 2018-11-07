@@ -5,6 +5,6 @@ namespace PizzaShop.Data.Repositories
 {
     public interface IPizzaRepo: IRepository<Pizza>
     {
-        
+        Pizza GetPizzaWithIngredients(int id);
     }
 }

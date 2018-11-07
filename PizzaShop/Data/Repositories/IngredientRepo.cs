@@ -1,4 +1,5 @@
-﻿using PizzaShop.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PizzaShop.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,10 +52,10 @@ namespace PizzaShop.Data.Repositories
 
         IEnumerable<Ingredient> IIngredientRepo.GetIngredientsForPizza(int id)
         {
-            var result = _context.Ingredients.Join(_context.Pizzas.Where(x => x.PizzaId == id),
-                x => x.IngredientId,
-                y => y.PizzaId, (y, x) => y)
-                .ToList();
+            IEnumerable<Ingredient> result = _context.PizzaIngredients
+                .Include(x => x.Ingredient)
+                .Where(x => x.PizzaId == id)
+                .Select(x => x.Ingredient).ToList();
 
             return null;
         }
