@@ -1,6 +1,8 @@
 ﻿using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PizzaShop.Services
 {
@@ -15,14 +17,23 @@ namespace PizzaShop.Services
             _ingredientRepo = ingredientRepo;
         }
 
-        public PizzaViewModel GetPizzaWithIngredients(int id)
+        public async Task<PizzaViewModel> GetPizzaWithIngredientsAsync(int? id)
         {
-            PizzaViewModel model = new PizzaViewModel();
-            model.Pizza = _pizzaRepo.GetPizzaWithIngredients(id);
+            if (id == null || id == 0)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+
+            int verifiedId = id?? default(int);
+
+            var model = new PizzaViewModel
+            {
+                Pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(verifiedId)
+            };
 
             if (model.Pizza.PizzaIngredients == null || model.Pizza.PizzaIngredients.Count == 0 )
             {
-                model.Ingredients = _ingredientRepo.GetIngredientsForPizza(id);
+                model.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
             }
             else
             {

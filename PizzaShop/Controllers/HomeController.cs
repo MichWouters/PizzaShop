@@ -20,7 +20,7 @@ namespace PizzaShop.Controllers
 
         public IActionResult Index()
         {
-            var pizza = _service.GetPizzaWithIngredients(3);
+            var pizza = _service.GetPizzaWithIngredientsAsync(3);
             return View();
         }
 

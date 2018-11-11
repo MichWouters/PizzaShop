@@ -1,5 +1,4 @@
 ﻿using PizzaShop.Data.Entities;
-using PizzaShop.Services;
 using System.Collections.Generic;
 
 namespace PizzaShop.Models

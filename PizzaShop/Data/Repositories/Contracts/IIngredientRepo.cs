@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PizzaShop.Data.Entities;
 
 namespace PizzaShop.Data.Repositories
 {
     public interface IIngredientRepo: IRepository<Ingredient>
     {
-        [System.Obsolete("Use IPizzaRepo.GetPizzaWithIngredients instead")]
-        IEnumerable<Ingredient> GetIngredientsForPizza(int id);
+        Task<IEnumerable<Ingredient>> GetIngredientsForPizza(int id);
     }
 }
