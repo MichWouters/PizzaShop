@@ -11,12 +11,17 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-8">
-            @Html.DisplayFor(model => model.Pizza.Description);
+            <img src="~/images/meatlovers.jpg" class="col-xs-6 img-responsive img-circle" />
+            <div class="col-xs-6">
+                @Html.DisplayFor(model => model.Pizza.Description)
+                <p>$ @Html.DisplayFor(model => model.Pizza.Price)</p>
+            </div>
+            
         </div>
 
         <div class="col-xs-12 col-md-4">
             <ul class="list-group">
-                <li class="list-group-item active">Ingredients @Html.DisplayFor(model => model.Pizza.Name);</li>
+                <li class="list-group-item active">Ingredients @Html.DisplayFor(model => model.Pizza.Name)</li>
                 @foreach (var item in Model.Ingredients)
                 {
                     <li class="list-group-item">@item.Name</li>
