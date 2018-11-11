@@ -15,19 +15,19 @@ namespace PizzaShop.Data.Repositories
             _context = context;
         }
 
-        public async Task<int> AddEntity(Pizza entity)
+        public async Task<int> AddEntityAsync(Pizza entity)
         {
             _context.Pizzas.Add(entity);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteEntity(Pizza entity)
+        public async Task<int> DeleteEntityAsync(Pizza entity)
         {
             _context.Pizzas.Remove(entity);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Pizza>> GetPizzasAsync()
+        public async Task<IEnumerable<Pizza>> GetAllAsync()
         {
             var pizzas = await _context.Pizzas.ToListAsync();
             return pizzas;
@@ -48,7 +48,7 @@ namespace PizzaShop.Data.Repositories
             return entity;
         }
 
-        public async Task<int> UpdateEntity(int id, Pizza entity)
+        public async Task<int> UpdateEntityAsync(int id, Pizza entity)
         {
             if (entity == null)
             {
