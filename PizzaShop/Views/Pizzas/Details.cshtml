@@ -9,23 +9,23 @@
 <div>
     <h4></h4>
 
-    <div class="ingredients">
-        <div class="row">
-            <div class="col-xs-12 col-md-8">
-                Lorem Ipsum
-            </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+            @Html.DisplayFor(model => model.Pizza.Description);
+        </div>
 
-            <div class="col-xs-12 col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item active">Ingredients @Html.DisplayFor(model => model.Pizza.Name)</li>
-                    @foreach (var item in Model.Ingredients)
-                    {
-                        <li class="list-group-item">@item.Name</li>
-                    }
-                </ul>
-            </div>
+        <div class="col-xs-12 col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Ingredients @Html.DisplayFor(model => model.Pizza.Name);</li>
+                @foreach (var item in Model.Ingredients)
+                {
+                    <li class="list-group-item">@item.Name</li>
+                }
+            </ul>
         </div>
     </div>
+
+    <button class="btn btn-primary" type="button">Add to cart</button>
 </div>
 
 <div>
