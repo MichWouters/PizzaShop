@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PizzaShop.Data.Repositories
 {
     public interface IRepository<T> where T : Entities.Entity
     {
-        int AddEntity(T entity);
+        Task<int> AddEntityAsync(T entity);
 
-        int UpdateEntity(int id, T entity);
+        Task<int> UpdateEntityAsync(int id, T entity);
 
-        int DeleteEntity(T entity);
+        Task<int> DeleteEntityAsync(T entity);
 
-        T GetEntity(int id);
+        Task<T> GetEntityAsync(int id);
 
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
     }
 }

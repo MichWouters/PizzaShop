@@ -1,0 +1,18 @@
+﻿@model IEnumerable<PizzaShop.Data.Entities.Pizza>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@foreach (var pizza in Model)
+{
+
+    <div class="card col-md-4">
+        <img class="card-img-top" src="~/images/margherita.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@pizza.Name</h5>
+            <p class="card-text">@pizza.Description</p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+        </div>
+    </div>
+}

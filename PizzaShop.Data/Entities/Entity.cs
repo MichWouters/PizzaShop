@@ -5,6 +5,11 @@ namespace PizzaShop.Data.Entities
 {
     public class Entity
     {
+        public Entity()
+        {
+            DateCreated = DateTime.Today.ToUniversalTime();
+        }
+
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 

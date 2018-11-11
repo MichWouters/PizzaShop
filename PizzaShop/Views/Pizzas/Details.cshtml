@@ -1,0 +1,39 @@
+﻿@model PizzaShop.Models.PizzaViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Html.DisplayFor(model => model.Pizza.Name)</h2>
+
+<div>
+    <h4></h4>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <img src="~/images/meatlovers.jpg" class="col-xs-6 img-responsive img-circle" />
+            <div class="col-xs-6">
+                @Html.DisplayFor(model => model.Pizza.Description)
+                <p>$ @Html.DisplayFor(model => model.Pizza.Price)</p>
+            </div>
+            
+        </div>
+
+        <div class="col-xs-12 col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">Ingredients @Html.DisplayFor(model => model.Pizza.Name)</li>
+                @foreach (var item in Model.Ingredients)
+                {
+                    <li class="list-group-item">@item.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="button">Add to cart</button>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Pizza.PizzaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

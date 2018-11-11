@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaShop.Data;
 
 namespace PizzaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181111171859_description")]
+    partial class description
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,14 +254,14 @@ namespace PizzaShop.Migrations
                     b.ToTable("Ingredients");
 
                     b.HasData(
-                        new { IngredientId = 1, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
-                        new { IngredientId = 2, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
-                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
-                        new { IngredientId = 4, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
-                        new { IngredientId = 5, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
-                        new { IngredientId = 6, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
-                        new { IngredientId = 7, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
-                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
+                        new { IngredientId = 1, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 309, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
+                        new { IngredientId = 2, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
+                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
+                        new { IngredientId = 4, DateCreated = new DateTime(2018, 11, 11, 17, 18, 59, 310, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
+                        new { IngredientId = 5, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
+                        new { IngredientId = 6, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
+                        new { IngredientId = 7, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
+                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 11, 18, 18, 59, 310, DateTimeKind.Local), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
                     );
                 });
 
@@ -344,9 +346,9 @@ namespace PizzaShop.Migrations
                     b.ToTable("Pizzas");
 
                     b.HasData(
-                        new { PizzaId = 1, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "The traditional toppings on a Margherita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness.", Image = "margherita.jpg", Name = "Margherita", Price = 4.99 },
-                        new { PizzaId = 2, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "If you've ever wished your pepperoni pizza had more pepperoni on it, then this pizza is for you! This oven-fresh pizza has 50% more pepperoni than our average pizza pie.", Image = "pepperoni.jpg", Name = "Pepperoni", Price = 6.99 },
-                        new { PizzaId = 3, DateCreated = new DateTime(2018, 11, 10, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef.", Image = "meatlovers.jpg", Name = "Meat Lovers", Price = 8.99 }
+                        new { PizzaId = 1, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Margherita", Price = 4.99 },
+                        new { PizzaId = 2, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Pepperoni", Price = 6.99 },
+                        new { PizzaId = 3, DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Meat Lovers", Price = 8.99 }
                     );
                 });
 

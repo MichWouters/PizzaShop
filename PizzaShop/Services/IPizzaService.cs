@@ -1,9 +1,10 @@
-﻿using PizzaShop.Models;
+﻿using System.Threading.Tasks;
+using PizzaShop.Models;
 
 namespace PizzaShop.Services
 {
     public interface IPizzaService
     {
-        PizzaViewModel GetPizzaWithIngredients(int id);
+        Task<PizzaViewModel> GetPizzaWithIngredientsAsync(int? id);
     }
 }
