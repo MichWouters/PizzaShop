@@ -41,9 +41,9 @@ namespace PizzaShop.Data
                 );
 
             builder.Entity<Pizza>().HasData(
-                new Pizza { PizzaId = 1, Name = "Margherita", Price = 4.99 },
-                new Pizza { PizzaId = 2, Name = "Pepperoni", Price = 6.99 },
-                new Pizza { PizzaId = 3, Name = "Meat Lovers", Price = 8.99 }
+                new Pizza { PizzaId = 1, Name = "Margherita", Price = 4.99, Description = "The traditional toppings on a Margherita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness." },
+                new Pizza { PizzaId = 2, Name = "Pepperoni", Price = 6.99, Description = "If you've ever wished your pepperoni pizza had more pepperoni on it, then this pizza is for you! This oven-fresh pizza has 50% more pepperoni than our average pizza pie."},
+                new Pizza { PizzaId = 3, Name = "Meat Lovers", Price = 8.99, Description = "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef." }
                 );
 
             builder.Entity<PizzaIngredient>().HasData(
