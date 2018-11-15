@@ -1,17 +1,19 @@
-﻿using PizzaShop.Data.Repositories;
+﻿using PizzaShop.Data;
+using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PizzaShop.Services
 {
     public class PizzaService : IPizzaService
     {
-        private IPizzaRepo _pizzaRepo;
-        private IIngredientRepo _ingredientRepo;
+        private readonly IPizzaRepo _pizzaRepo;
+        private readonly IPizzaIngredientsRepo _ingredientRepo;
 
-        public PizzaService(IPizzaRepo pizzaRepo, IIngredientRepo ingredientRepo)
+        public PizzaService(IPizzaRepo pizzaRepo, IPizzaIngredientsRepo ingredientRepo)
         {
             _pizzaRepo = pizzaRepo;
             _ingredientRepo = ingredientRepo;
@@ -24,14 +26,14 @@ namespace PizzaShop.Services
                 throw new ArgumentNullException(nameof(id));
             }
 
-            int verifiedId = id?? default(int);
+            int verifiedId = id ?? default(int);
 
             var model = new PizzaViewModel
             {
                 Pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(verifiedId)
             };
 
-            if (model.Pizza.PizzaIngredients == null || model.Pizza.PizzaIngredients.Count == 0 )
+            if (model.Pizza.PizzaIngredients == null || model.Pizza.PizzaIngredients.Count == 0)
             {
                 model.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
             }
@@ -41,6 +43,22 @@ namespace PizzaShop.Services
             }
 
             return model;
+        }
+
+        public async Task SavePizza(PizzaViewModel pizza)
+        {
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
+            {
+                int pizzaRows = await _pizzaRepo.AddEntityAsync(pizza.Pizza);
+                int ingredientRows = await _ingredientRepo.PutIngredientsOnPizza(
+                    pizza.Pizza.PizzaId,
+                    pizza.Ingredients.Select(x => x.IngredientId).ToArray());
+
+                // Commit transaction if all commands succeed, transaction will auto-rollback
+                // when disposed if either commands fails
+                scope.Complete();
+
+            }
         }
     }
 }
