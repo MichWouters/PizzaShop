@@ -1,15 +1,17 @@
-﻿using PizzaShop.Data.Repositories;
+﻿using PizzaShop.Data;
+using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PizzaShop.Services
 {
     public class PizzaService : IPizzaService
     {
-        private IPizzaRepo _pizzaRepo;
-        private IPizzaIngredientsRepo _ingredientRepo;
+        private readonly IPizzaRepo _pizzaRepo;
+        private readonly IPizzaIngredientsRepo _ingredientRepo;
 
         public PizzaService(IPizzaRepo pizzaRepo, IPizzaIngredientsRepo ingredientRepo)
         {
@@ -45,11 +47,18 @@ namespace PizzaShop.Services
 
         public async Task SavePizza(PizzaViewModel pizza)
         {
-            // Todo: Wrap in transaction
-            int pizzaRows = await _pizzaRepo.AddEntityAsync(pizza.Pizza);
-            int ingredientRows = await _ingredientRepo.PutIngredientsOnPizza(
-                pizza.Pizza.PizzaId,
-                pizza.Ingredients.Select(x => x.IngredientId).ToArray());
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
+            {
+                int pizzaRows = await _pizzaRepo.AddEntityAsync(pizza.Pizza);
+                int ingredientRows = await _ingredientRepo.PutIngredientsOnPizza(
+                    pizza.Pizza.PizzaId,
+                    pizza.Ingredients.Select(x => x.IngredientId).ToArray());
+
+                // Commit transaction if all commands succeed, transaction will auto-rollback
+                // when disposed if either commands fails
+                scope.Complete();
+
+            }
         }
     }
 }
