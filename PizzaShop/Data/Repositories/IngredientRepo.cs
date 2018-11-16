@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaShop.Data.Repositories
@@ -26,18 +27,6 @@ namespace PizzaShop.Data.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Ingredient>> GetAllAsync()
-        {
-            var result = await _context.Ingredients.ToListAsync();
-            return result;
-        }
-
-        public async Task<Ingredient> GetEntityAsync(int id)
-        {
-            var entity = await _context.Ingredients.FindAsync(id);
-            return entity;
-        }
-
         public async Task<int> UpdateEntityAsync(int id, Ingredient entity)
         {
             if (entity == null)
@@ -48,6 +37,28 @@ namespace PizzaShop.Data.Repositories
             entity.DateModified = System.DateTime.Now;
             _context.Ingredients.Update(entity);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<Ingredient> GetEntityAsync(int id)
+        {
+            var entity = await _context.Ingredients.FindAsync(id);
+            return entity;
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetAllAsync()
+        {
+            var result = await _context.Ingredients.ToListAsync();
+            return result;
+        }
+
+        public async Task<IEnumerable<Ingredient>> GetIngredientsForPizza(int id)
+        {
+            IEnumerable<Ingredient> result = await _context.PizzaIngredients
+                .Include(x => x.Ingredient)
+                .Where(x => x.PizzaId == id)
+                .Select(x => x.Ingredient).ToListAsync();
+
+            return result;
         }
     }
 }

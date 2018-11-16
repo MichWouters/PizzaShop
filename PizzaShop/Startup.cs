@@ -39,6 +39,7 @@ namespace PizzaShop
             services.AddTransient<IPizzaRepo, PizzaRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
+            services.AddTransient<IPizzaIngredientsRepo, PizzaIngredientsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

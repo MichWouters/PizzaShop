@@ -1,6 +1,4 @@
-﻿using PizzaShop.Data.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace PizzaShop.Data.Repositories
 {
@@ -9,7 +7,5 @@ namespace PizzaShop.Data.Repositories
         Task<int> PutIngredientsOnPizza(int pizzaId, int[] ingredientIds);
 
         Task<int> RemoveIngredientsFromPizza(int pizzaId, int[] ingredientIds);
-
-        Task<IEnumerable<Ingredient>> GetIngredientsForPizza(int id);
     }
 }

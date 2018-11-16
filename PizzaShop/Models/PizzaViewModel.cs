@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace PizzaShop.Models
 {
-    public class PizzaViewModel: Model
+    public class PizzaViewModel : Model
     {
-
         public PizzaViewModel()
         {
         }

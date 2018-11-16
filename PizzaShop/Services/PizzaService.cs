@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.Configuration;
-using PizzaShop.Data.Entities;
+﻿using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
 using System;
@@ -29,16 +27,12 @@ namespace PizzaShop.Services
             }
 
             int verifiedId = id ?? default(int);
-            var pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(verifiedId);
-            var pizzaModel = MapFromEntity(pizza);
+            Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
+            PizzaViewModel pizzaModel = MapFromEntity(pizza);
 
-            var model = new PizzaViewModel
-            {
-            };
+            pizzaModel.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
 
-            model.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
-
-            return model;
+            return pizzaModel;
         }
 
         public async Task SavePizza(PizzaViewModel pizzaModel)
@@ -55,7 +49,6 @@ namespace PizzaShop.Services
                 // Commit transaction if all commands succeed, transaction will auto-rollback
                 // when disposed if either commands fails
                 scope.Complete();
-
             }
         }
     }
