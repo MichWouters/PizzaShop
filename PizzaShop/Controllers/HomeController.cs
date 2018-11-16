@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PizzaShop.Models;
 using PizzaShop.Services;
+using System.Diagnostics;
 
 namespace PizzaShop.Controllers
 {
     public class HomeController : Controller
     {
         private IPizzaService _service;
+
         public HomeController(IPizzaService service)
         {
             _service = service;
         }
-
 
         public IActionResult Index()
         {

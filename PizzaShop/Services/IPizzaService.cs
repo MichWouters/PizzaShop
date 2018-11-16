@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using PizzaShop.Models;
+﻿using PizzaShop.Models;
+using System.Threading.Tasks;
 
 namespace PizzaShop.Services
 {

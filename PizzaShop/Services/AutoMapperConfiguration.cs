@@ -4,14 +4,14 @@ using PizzaShop.Models;
 
 namespace PizzaShop.Services
 {
-    public class AutoMapperConfiguration: Profile
+    public class AutoMapperConfiguration : Profile
     {
         public AutoMapperConfiguration()
         {
             CreateMap<Pizza, PizzaViewModel>()
                 .ReverseMap();
 
-            CreateMap<PizzaViewModel, Pizza >()
+            CreateMap<PizzaViewModel, Pizza>()
                 .ReverseMap();
         }
     }

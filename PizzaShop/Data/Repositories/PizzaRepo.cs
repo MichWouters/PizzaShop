@@ -75,7 +75,7 @@ namespace PizzaShop.Data.Repositories
                 .Where(x => x.PizzaId == id)
                 .FirstOrDefaultAsync();
             }
-            
+
             return entity;
         }
     }
