@@ -21,12 +21,6 @@ namespace PizzaShop.Data.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteEntityAsync(Ingredient entity)
-        {
-            _context.Ingredients.Remove(entity);
-            return await _context.SaveChangesAsync();
-        }
-
         public async Task<int> UpdateEntityAsync(int id, Ingredient entity)
         {
             if (entity == null)
@@ -36,6 +30,12 @@ namespace PizzaShop.Data.Repositories
 
             entity.DateModified = System.DateTime.Now;
             _context.Ingredients.Update(entity);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> DeleteEntityAsync(Ingredient entity)
+        {
+            _context.Ingredients.Remove(entity);
             return await _context.SaveChangesAsync();
         }
 
@@ -59,6 +59,28 @@ namespace PizzaShop.Data.Repositories
                 .Select(x => x.Ingredient).ToListAsync();
 
             return result;
+        }
+
+        public async Task<int> PutIngredientsOnPizza(int pizzaId, int[] ingredientIds)
+        {
+            for (int i = 0; i < ingredientIds.Length; i++)
+            {
+                _context.PizzaIngredients.Add(
+                    new PizzaIngredient { PizzaId = pizzaId, IngredientId = ingredientIds[i] });
+            }
+
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> RemoveIngredientsFromPizza(int pizzaId, int[] ingredientIds)
+        {
+            for (int i = 0; i < ingredientIds.Length; i++)
+            {
+                _context.PizzaIngredients.Remove(
+                    new PizzaIngredient { PizzaId = pizzaId, IngredientId = ingredientIds[i] });
+            }
+
+            return await _context.SaveChangesAsync();
         }
     }
 }

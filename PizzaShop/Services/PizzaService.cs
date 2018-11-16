@@ -11,9 +11,9 @@ namespace PizzaShop.Services
     public class PizzaService : MappableService<Pizza, PizzaViewModel>, IPizzaService
     {
         private readonly IPizzaRepo _pizzaRepo;
-        private readonly IPizzaIngredientsRepo _ingredientRepo;
+        private readonly IIngredientRepo _ingredientRepo;
 
-        public PizzaService(IPizzaRepo pizzaRepo, IPizzaIngredientsRepo ingredientRepo)
+        public PizzaService(IPizzaRepo pizzaRepo, IIngredientRepo ingredientRepo)
         {
             _pizzaRepo = pizzaRepo;
             _ingredientRepo = ingredientRepo;

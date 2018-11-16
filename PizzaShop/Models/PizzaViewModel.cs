@@ -5,10 +5,6 @@ namespace PizzaShop.Models
 {
     public class PizzaViewModel : Model
     {
-        public PizzaViewModel()
-        {
-        }
-
         public int PizzaId { get; set; }
 
         public string Name { get; set; }
@@ -20,5 +16,7 @@ namespace PizzaShop.Models
         public double Price { get; set; }
 
         public IEnumerable<Ingredient> Ingredients { get; set; }
+
+        public bool IsAvailable { get; set; }
     }
 }
