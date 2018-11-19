@@ -5,6 +5,8 @@ using PizzaShop.Models;
 using PizzaShop.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace PizzaShop.Testing
@@ -12,22 +14,34 @@ namespace PizzaShop.Testing
     public class PizzaTests
     {
         private IPizzaService _service;
+        private Mock<IPizzaRepo> mockPizzaRepo;
+        private Mock<IIngredientRepo> mockIngredientRepo;
 
         public PizzaTests()
         {
-            var mockPizzaRepo = new Mock<IPizzaRepo>();
-            var mockIngredientRepo = new Mock<IIngredientRepo>();
+            mockPizzaRepo = new Mock<IPizzaRepo>();
+            mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(mockPizzaRepo.Object, mockIngredientRepo.Object);
         }
 
         [Fact]
-        public void Can_Map_Pizza_From_Entity()
+        public async Task Can_Map_Pizza_From_Entity()
         {
             // Arrange
+            mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(
+                It.IsAny<int>(), It.IsAny<bool>()))
+                .ReturnsAsync(GetMockPizzaEntity());
 
-            Pizza mockPizza = GetMockPizzaEntity();
-            var viewModel = _service.MapFromEntity(mockPizza);
+            // Act
+            Pizza mockPizza = await mockPizzaRepo.Object.GetPizzaWithIngredientsAsync(55);
+            PizzaViewModel viewModel = _service.MapFromEntity(mockPizza);
             viewModel = (PizzaViewModel)viewModel.Convert();
+
+            // Assert
+            Assert.Equal("~/images/margherita.jpg", viewModel.Image);
+            Assert.Equal(mockPizza.Name, viewModel.Name);
+            Assert.Equal(mockPizza.Price, viewModel.Price);
+            Assert.Equal(mockPizza.PizzaIngredients.Count, viewModel.Ingredients.Count());
         }
 
         private PizzaViewModel GetMockPizzaViewModel()
@@ -55,9 +69,9 @@ namespace PizzaShop.Testing
                 Image = "margherita.jpg",
                 PizzaIngredients = new List<PizzaIngredient>
                 {
-                    new PizzaIngredient{ IngredientId = 1},
-                    new PizzaIngredient{ IngredientId = 2},
-                    new PizzaIngredient{ IngredientId = 3}
+                    new PizzaIngredient{ PizzaId= 1, IngredientId = 1},
+                    new PizzaIngredient{ PizzaId= 1, IngredientId = 2},
+                    new PizzaIngredient{ PizzaId= 1, IngredientId = 3}
                 }
             };
         }
