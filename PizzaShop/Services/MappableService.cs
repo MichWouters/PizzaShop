@@ -5,7 +5,7 @@ using PizzaShop.Models;
 
 namespace PizzaShop.Services
 {
-    public abstract class MappableService<TEntity, TModel>
+    public abstract class MappableService<TEntity, TModel> : IMappableService<TEntity, TModel>
         where TEntity : Entity
         where TModel : Model
     {

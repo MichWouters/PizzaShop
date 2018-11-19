@@ -18,5 +18,11 @@ namespace PizzaShop.Models
         public IEnumerable<Ingredient> Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
+
+        public override Model Convert()
+        {
+            Image = "~/images/" + Image;
+            return this;
+        }
     }
 }
