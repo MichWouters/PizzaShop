@@ -33,22 +33,21 @@ namespace PizzaShop.Testing
                 .ReturnsAsync(GetMockPizzaEntity());
 
             // Act
-            Pizza mockPizza = await mockPizzaRepo.Object.GetPizzaWithIngredientsAsync(55);
-            PizzaViewModel viewModel = _service.MapFromEntity(mockPizza);
+            PizzaViewModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
             viewModel = (PizzaViewModel)viewModel.Convert();
 
             // Assert
             Assert.Equal("~/images/margherita.jpg", viewModel.Image);
-            Assert.Equal(mockPizza.Name, viewModel.Name);
-            Assert.Equal(mockPizza.Price, viewModel.Price);
-            Assert.Equal(mockPizza.PizzaIngredients.Count, viewModel.Ingredients.Count());
+            Assert.Equal("TestPizzaEntity", viewModel.Name);
+            Assert.Equal(5.14, viewModel.Price);
+            Assert.Equal(3, viewModel.Ingredients.Count());
         }
 
         private PizzaViewModel GetMockPizzaViewModel()
         {
             return new PizzaViewModel
             {
-                Name = "TestPizza",
+                Name = "TestPizzaViewModel",
                 Price = 5.14,
                 Image = "margherita.jpg",
                 Ingredients = new List<Ingredient>
@@ -64,7 +63,7 @@ namespace PizzaShop.Testing
         {
             return new Pizza
             {
-                Name = "TestPizza",
+                Name = "TestPizzaEntity",
                 Price = 5.14,
                 Image = "margherita.jpg",
                 PizzaIngredients = new List<PizzaIngredient>

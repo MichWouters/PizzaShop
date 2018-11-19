@@ -5,7 +5,7 @@ using PizzaShop.Models;
 
 namespace PizzaShop.Services
 {
-    public abstract class MappableService<TEntity, TModel> : IMappableService<TEntity, TModel>
+    public abstract class MappableService<TEntity, TModel>
         where TEntity : Entity
         where TModel : Model
     {
@@ -25,13 +25,13 @@ namespace PizzaShop.Services
             mapper = new Mapper(config);
         }
 
-        public TModel MapFromEntity(TEntity entity)
+        protected TModel MapFromEntity(TEntity entity)
         {
             TModel model = mapper.Map<TModel>(entity);
             return model;
         }
 
-        public TEntity MapToEntity(TModel model)
+        protected TEntity MapToEntity(TModel model)
         {
             TEntity entity = mapper.Map<TEntity>(model);
             return entity;

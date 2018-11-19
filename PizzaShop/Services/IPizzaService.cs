@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace PizzaShop.Services
 {
-    public interface IPizzaService: IMappableService<Pizza, PizzaViewModel>
+    public interface IPizzaService
     {
         Task<PizzaViewModel> GetPizzaWithIngredientsAsync(int? id);
 
