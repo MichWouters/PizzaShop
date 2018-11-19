@@ -28,8 +28,8 @@ namespace PizzaShop.Testing
         public async Task Can_Map_Pizza_From_Entity()
         {
             // Arrange
-            mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(
-                It.IsAny<int>(), It.IsAny<bool>()))
+            mockPizzaRepo.Setup(x => x.GetEntityAsync(
+                It.IsAny<int>()))
                 .ReturnsAsync(GetMockPizzaEntity());
 
             // Act
@@ -49,7 +49,7 @@ namespace PizzaShop.Testing
             {
                 Name = "TestPizzaViewModel",
                 Price = 5.14,
-                Image = "margherita.jpg",
+                Image = "~/images/margherita.jpg",
                 Ingredients = new List<Ingredient>
                 {
                     new Ingredient{ IngredientId = 1},

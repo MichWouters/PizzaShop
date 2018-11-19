@@ -39,6 +39,8 @@ namespace PizzaShop.Services
         {
             var pizza = MapToEntity(pizzaModel);
 
+            // Todo: Verify security checks
+
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
                 int pizzaRows = await _pizzaRepo.AddEntityAsync(pizza);
