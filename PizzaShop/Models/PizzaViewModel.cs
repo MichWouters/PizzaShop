@@ -13,7 +13,7 @@ namespace PizzaShop.Models
 
         public string Image { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public IEnumerable<Ingredient> Ingredients { get; set; }
 

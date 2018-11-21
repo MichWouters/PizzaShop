@@ -76,15 +76,18 @@ namespace PizzaShop.Testing
         }
 
         [Fact]
-        public void Can_Save_Pizza()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
         public void When_Exception_Thrown_During_Save_Transaction_Should_RollBack()
         {
-            throw new NotImplementedException();
+            // Arrange
+            mockPizzaRepo.Setup(x => x.AddEntityAsync(
+                It.IsAny<Pizza>()))
+                .ReturnsAsync(1);
+
+            // Act 
+            mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
+                It.IsAny<int>(), It.IsAny<int[]>())
+                ).ThrowsAsync(new Exception());
+            
         }
     }
 }
