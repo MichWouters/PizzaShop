@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
+using PizzaShop.Enums;
 
 namespace PizzaShop.Data
 {
@@ -30,14 +31,14 @@ namespace PizzaShop.Data
         private void SeedData(ModelBuilder builder)
         {
             builder.Entity<Ingredient>().HasData(
-                new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = IngredientType.Fruit },
-                new Ingredient { IngredientId = 2, Name = "Mozarella", IsVegetarian = true, Type = IngredientType.Cheese },
-                new Ingredient { IngredientId = 3, Name = "Salami", IsVegetarian = false, Type = IngredientType.Meat },
-                new Ingredient { IngredientId = 4, Name = "Thyme", IsVegetarian = true, Type = IngredientType.Condiments },
-                new Ingredient { IngredientId = 5, Name = "Chicken", IsVegetarian = false, Type = IngredientType.Meat },
-                new Ingredient { IngredientId = 6, Name = "Anchovie", IsVegetarian = true, Type = IngredientType.Fish },
-                new Ingredient { IngredientId = 7, Name = "Onion", IsVegetarian = true, Type = IngredientType.Vegetables },
-                new Ingredient { IngredientId = 8, Name = "BBQ Sauce", IsVegetarian = true, Type = IngredientType.Sauce }
+                new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = (int) IngredientCategory.Fruit },
+                new Ingredient { IngredientId = 2, Name = "Mozarella", IsVegetarian = true, Type = (int)IngredientCategory.Cheese },
+                new Ingredient { IngredientId = 3, Name = "Salami", IsVegetarian = false, Type = (int) IngredientCategory.Meat },
+                new Ingredient { IngredientId = 4, Name = "Thyme", IsVegetarian = true, Type = (int) IngredientCategory.Condiments },
+                new Ingredient { IngredientId = 5, Name = "Chicken", IsVegetarian = false, Type = (int) IngredientCategory.Meat },
+                new Ingredient { IngredientId = 6, Name = "Anchovie", IsVegetarian = true, Type = (int) IngredientCategory.Fish },
+                new Ingredient { IngredientId = 7, Name = "Onion", IsVegetarian = true, Type = (int) IngredientCategory.Vegetables },
+                new Ingredient { IngredientId = 8, Name = "BBQ Sauce", IsVegetarian = true, Type = (int) IngredientCategory.Sauce }
                 );
 
             builder.Entity<Pizza>().HasData(
