@@ -17,20 +17,6 @@ namespace PizzaShop.Data.Entities
 
         public ICollection<PizzaIngredient> PizzaIngredients { get; set; }
 
-        [EnumDataType(typeof(IngredientType))]
-        public IngredientType Type { get; set; }
-    }
-
-    public enum IngredientType
-    {
-        Other = 0,
-        Cheese = 1,
-        Meat = 2,
-        Fish = 3,
-        Condiments = 4,
-        Vegetables = 5,
-        Fruit = 6,
-        Sauce = 7,
-        Herbs = 8
+        public int Type { get; set; }
     }
 }

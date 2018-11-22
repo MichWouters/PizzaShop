@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
+using PizzaShop.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,6 +58,15 @@ namespace PizzaShop.Data.Repositories
                 .Include(x => x.Ingredient)
                 .Where(x => x.PizzaId == id)
                 .Select(x => x.Ingredient).ToListAsync();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<Ingredient>>GetIngredientsForCategory(IngredientCategory ingredientType)
+        {
+            IEnumerable<Ingredient> result = await _context.Ingredients
+                .Where(x => x.Type == (int)ingredientType)
+                .ToListAsync();
 
             return result;
         }
