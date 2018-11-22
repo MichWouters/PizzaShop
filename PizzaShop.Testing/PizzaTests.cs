@@ -39,7 +39,7 @@ namespace PizzaShop.Testing
             // Assert
             Assert.Equal("~/images/margherita.jpg", viewModel.Image);
             Assert.Equal("TestPizzaEntity", viewModel.Name);
-            Assert.Equal(5.14, viewModel.Price);
+            Assert.Equal(5.14M, viewModel.Price);
             Assert.Equal(3, viewModel.Ingredients.Count());
         }
 
@@ -48,7 +48,7 @@ namespace PizzaShop.Testing
             return new PizzaViewModel
             {
                 Name = "TestPizzaViewModel",
-                Price = 5.14,
+                Price = 5.14M,
                 Image = "~/images/margherita.jpg",
                 Ingredients = new List<Ingredient>
                 {
@@ -64,7 +64,7 @@ namespace PizzaShop.Testing
             return new Pizza
             {
                 Name = "TestPizzaEntity",
-                Price = 5.14,
+                Price = 5.14M,
                 Image = "margherita.jpg",
                 PizzaIngredients = new List<PizzaIngredient>
                 {
