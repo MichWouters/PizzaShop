@@ -16,7 +16,8 @@ namespace PizzaShop.Data.Entities
         public string Image { get; set; }
 
         [Required]
-        public double Price { get; set; }
+        [Range(0, 99.99)]
+        public decimal Price { get; set; }
 
         public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
     }

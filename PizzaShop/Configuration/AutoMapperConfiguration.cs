@@ -9,6 +9,7 @@ namespace PizzaShop.Services
         public AutoMapperConfiguration()
         {
             CreateMap<Pizza, PizzaViewModel>()
+                .ForMember(model => model.Ingredients, x => x.MapFrom(entity => entity.PizzaIngredients))
                 .ReverseMap();
 
             CreateMap<PizzaViewModel, Pizza>()
