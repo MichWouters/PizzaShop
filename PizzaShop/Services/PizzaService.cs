@@ -1,5 +1,4 @@
 ﻿using PizzaShop.Data.Entities;
-using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
 using System;
 using System.Linq;
@@ -27,9 +26,10 @@ namespace PizzaShop.Services
                 throw new ArgumentNullException(nameof(id));
             }
 
-            int verifiedId = id ?? default(int);
+            int verifiedId = (int) id;
             Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
             PizzaViewModel pizzaModel = MapFromEntity(pizza);
+            pizzaModel = (PizzaViewModel)pizzaModel.ConvertUnmappableValues();
 
             pizzaModel.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
 

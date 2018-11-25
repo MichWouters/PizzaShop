@@ -35,7 +35,7 @@ namespace PizzaShop.Testing
 
             // Act
             PizzaViewModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
-            viewModel = (PizzaViewModel)viewModel.Convert();
+            viewModel = (PizzaViewModel)viewModel.ConvertUnmappableValues();
 
             // Assert
             Assert.Equal("~/images/margarita.jpg", viewModel.Image);

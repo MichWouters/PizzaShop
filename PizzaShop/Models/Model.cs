@@ -2,7 +2,7 @@
 {
     public abstract class Model
     {
-        public virtual Model Convert()
+        public virtual Model ConvertUnmappableValues()
         {
             return this;
         }

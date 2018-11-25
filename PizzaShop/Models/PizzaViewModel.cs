@@ -19,9 +19,9 @@ namespace PizzaShop.Models
 
         public bool IsAvailable { get; set; }
 
-        public override Model Convert()
+        public override Model ConvertUnmappableValues()
         {
-            Image = "~/images/" + Image;
+            Image = "../../Images/" + Image;
             return this;
         }
     }

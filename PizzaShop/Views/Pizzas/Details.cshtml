@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-8">
-            <img src="~/images/meatlovers.jpg" class="col-xs-6 img-responsive img-circle" />
+            <img src="@Model.Image" class="col-xs-6 img-responsive img-circle" />
             <div class="col-xs-6">
                 @Html.DisplayFor(model => model.Description)
                 <p>$ @Html.DisplayFor(model => model.Price)</p>
