@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaShop.Data;
 
 namespace PizzaShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181125165139_vc")]
+    partial class vc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -253,25 +255,13 @@ namespace PizzaShop.Migrations
 
                     b.HasData(
                         new { IngredientId = 1, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
-                        new { IngredientId = 2, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Olives", Type = 6 },
-                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
-                        new { IngredientId = 4, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Gouda", Type = 1 },
-                        new { IngredientId = 5, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Parmesan", Type = 1 },
-                        new { IngredientId = 6, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
-                        new { IngredientId = 7, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Bacon", Type = 2 },
-                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Merguez", Type = 2 },
-                        new { IngredientId = 9, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
-                        new { IngredientId = 10, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
-                        new { IngredientId = 11, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Pepper", Type = 4 },
-                        new { IngredientId = 12, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Salt", Type = 4 },
-                        new { IngredientId = 13, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
-                        new { IngredientId = 14, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Salmon", Type = 3 },
-                        new { IngredientId = 15, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Squid", Type = 3 },
-                        new { IngredientId = 16, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
-                        new { IngredientId = 17, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Green peppers", Type = 5 },
-                        new { IngredientId = 18, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 },
-                        new { IngredientId = 19, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Olive Oil", Type = 7 },
-                        new { IngredientId = 20, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Vinegar", Type = 7 }
+                        new { IngredientId = 2, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
+                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
+                        new { IngredientId = 4, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
+                        new { IngredientId = 5, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
+                        new { IngredientId = 6, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
+                        new { IngredientId = 7, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
+                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 }
                     );
                 });
 
@@ -383,23 +373,14 @@ namespace PizzaShop.Migrations
                     b.HasData(
                         new { Id = 1, IngredientId = 1, PizzaId = 1 },
                         new { Id = 2, IngredientId = 2, PizzaId = 1 },
-                        new { Id = 3, IngredientId = 3, PizzaId = 1 },
-                        new { Id = 4, IngredientId = 19, PizzaId = 1 },
-                        new { Id = 5, IngredientId = 1, PizzaId = 2 },
-                        new { Id = 6, IngredientId = 2, PizzaId = 2 },
-                        new { Id = 7, IngredientId = 3, PizzaId = 2 },
-                        new { Id = 8, IngredientId = 6, PizzaId = 2 },
-                        new { Id = 9, IngredientId = 11, PizzaId = 2 },
-                        new { Id = 10, IngredientId = 19, PizzaId = 2 },
-                        new { Id = 11, IngredientId = 1, PizzaId = 3 },
-                        new { Id = 12, IngredientId = 2, PizzaId = 3 },
-                        new { Id = 13, IngredientId = 3, PizzaId = 3 },
-                        new { Id = 14, IngredientId = 6, PizzaId = 3 },
-                        new { Id = 15, IngredientId = 7, PizzaId = 3 },
-                        new { Id = 16, IngredientId = 8, PizzaId = 3 },
-                        new { Id = 17, IngredientId = 17, PizzaId = 3 },
-                        new { Id = 18, IngredientId = 19, PizzaId = 3 },
-                        new { Id = 19, IngredientId = 20, PizzaId = 3 }
+                        new { Id = 3, IngredientId = 1, PizzaId = 2 },
+                        new { Id = 4, IngredientId = 2, PizzaId = 2 },
+                        new { Id = 5, IngredientId = 3, PizzaId = 2 },
+                        new { Id = 6, IngredientId = 1, PizzaId = 3 },
+                        new { Id = 7, IngredientId = 2, PizzaId = 3 },
+                        new { Id = 8, IngredientId = 3, PizzaId = 3 },
+                        new { Id = 9, IngredientId = 4, PizzaId = 3 },
+                        new { Id = 10, IngredientId = 5, PizzaId = 3 }
                     );
                 });
 
