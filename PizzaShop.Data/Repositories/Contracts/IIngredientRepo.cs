@@ -11,8 +11,6 @@ namespace PizzaShop.Data.Repositories.Contracts
 
         Task<IEnumerable<Ingredient>> GetIngredientsForCategory(IngredientCategory ingredientType);
 
-        Task<IEnumerable<object>> GetAllIngredientsPerCategory();
-
         Task<int> PutIngredientsOnPizza(int pizzaId, int[] ingredientIds);
 
         Task<int> RemoveIngredientsFromPizza(int pizzaId, int[] ingredientIds);

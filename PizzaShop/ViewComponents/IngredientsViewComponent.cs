@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaShop.Data.Entities;
-using PizzaShop.Data.Repositories;
+using PizzaShop.Data.Enums;
+using PizzaShop.Data.Repositories.Contracts;
 using PizzaShop.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using PizzaShop.Data.Repositories.Contracts;
 
 namespace PizzaShop.ViewComponents
 {
@@ -19,12 +20,17 @@ namespace PizzaShop.ViewComponents
 
         private async Task<IEnumerable<IngredientViewModel>> GetIngredientsAsync()
         {
-            var ingredients = new List<IngredientViewModel>();
-            
             IEnumerable<Ingredient> result = await _repo.GetAllAsync();
-            
 
-            return ingredients;
+            var viewModels = result.GroupBy(
+                x => x.Type,
+                (category, ingredients) => new IngredientViewModel()
+                {
+                    Category = (IngredientCategory)category,
+                    Ingredients = (ingredients).ToList()
+                }).ToList();
+
+            return viewModels;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()

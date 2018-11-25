@@ -93,18 +93,5 @@ namespace PizzaShop.Data.Repositories
 
             return await _context.SaveChangesAsync();
         }
-
-        public async Task<IEnumerable<object>> GetAllIngredientsPerCategory()
-        {
-            var viewModels = await _context.Ingredients.GroupBy(
-                x => x.Type,
-                (key, g) => new
-                {
-                    Category = (IngredientCategory)key,
-                    Ingredients = _context.Ingredients.Where(y => y.Type == key).ToList()
-                }).ToListAsync();
-
-            return viewModels;
-        }
     }
 }

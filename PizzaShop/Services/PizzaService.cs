@@ -49,6 +49,9 @@ namespace PizzaShop.Services
                     pizzaModel.PizzaId,
                     pizzaModel.Ingredients.Select(x => x.IngredientId).ToArray());
 
+                Console.WriteLine(pizzaRows);
+                Console.WriteLine(ingredientRows);
+
                 // Commit transaction if all commands succeed, transaction will auto-rollback
                 // when disposed if either commands fails
                 scope.Complete();
