@@ -14,6 +14,9 @@ namespace PizzaShop.Services
 
             CreateMap<PizzaViewModel, Pizza>()
                 .ReverseMap();
+
+            CreateMap<Ingredient, IngredientModel>()
+                .ReverseMap();
         }
     }
 }
