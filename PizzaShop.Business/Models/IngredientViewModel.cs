@@ -7,7 +7,7 @@ namespace PizzaShop.Business.Models
     {
         public IngredientCategory Category { get; set; }
 
-        public List<IngredientModel> Ingredients { get; set; }
+        public IEnumerable<IngredientModel> Ingredients { get; set; }
 
     }
 }

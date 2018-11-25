@@ -3,6 +3,9 @@ using AutoMapper.Configuration;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 using PizzaShop.Services;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PizzaShop.Business.Services
 {
@@ -24,6 +27,16 @@ namespace PizzaShop.Business.Services
             var config = new MapperConfiguration(baseMappings);
 
             _mapper = new Mapper(config);
+        }
+
+        protected IEnumerable<TModel> MapFromEntities(IEnumerable<TEntity> entities)
+        {
+            return entities.Select(entity => _mapper.Map<TModel>(entity)).ToList();
+        }
+
+        protected IEnumerable<TEntity> MapToEntities(IEnumerable<TModel> models)
+        {
+            return models.Select(model => _mapper.Map<TEntity>(model)).ToList();
         }
 
         protected TModel MapFromEntity(TEntity entity)
