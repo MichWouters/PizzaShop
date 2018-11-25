@@ -10,9 +10,9 @@ namespace PizzaShop.Business.Services
         where TEntity : Entity
         where TModel : Model
     {
-        private IMapper mapper;
+        private IMapper _mapper;
 
-        public MappableService()
+        protected MappableService()
         {
             SetUpMapperConfig();
         }
@@ -23,18 +23,18 @@ namespace PizzaShop.Business.Services
             baseMappings.AddProfile<AutoMapperConfiguration>();
             var config = new MapperConfiguration(baseMappings);
 
-            mapper = new Mapper(config);
+            _mapper = new Mapper(config);
         }
 
         protected TModel MapFromEntity(TEntity entity)
         {
-            TModel model = mapper.Map<TModel>(entity);
+            TModel model = _mapper.Map<TModel>(entity);
             return model;
         }
 
         protected TEntity MapToEntity(TModel model)
         {
-            TEntity entity = mapper.Map<TEntity>(model);
+            TEntity entity = _mapper.Map<TEntity>(model);
             return entity;
         }
     }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PizzaShop.Data.Migrations
 {
-    public partial class refactoring : Migration
+    public partial class Refactoring : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

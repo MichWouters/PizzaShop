@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PizzaShop.Services;
 using System.Diagnostics;
 using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
@@ -8,16 +7,12 @@ namespace PizzaShop.Controllers
 {
     public class HomeController : Controller
     {
-        private IPizzaService _service;
-
         public HomeController(IPizzaService service)
         {
-            _service = service;
         }
 
         public IActionResult Index()
         {
-            var pizza = _service.GetPizzaWithIngredientsAsync(3);
             return View();
         }
 

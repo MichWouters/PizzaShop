@@ -11,7 +11,7 @@ namespace PizzaShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20181125182519_refactoring")]
-    partial class refactoring
+    partial class Refactoring
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

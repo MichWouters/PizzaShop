@@ -4,7 +4,7 @@ namespace PizzaShop.Business.Models
 {
     public class IngredientModel: Model
     {
-        public int ID  { get; set; }
+        public int Id  { get; set; }
 
         public string Name { get; set; }
 

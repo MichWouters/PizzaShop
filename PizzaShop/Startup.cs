@@ -10,7 +10,6 @@ using PizzaShop.Business.Services;
 using PizzaShop.Data;
 using PizzaShop.Data.Repositories;
 using PizzaShop.Data.Repositories.Contracts;
-using PizzaShop.Services;
 
 namespace PizzaShop
 {
