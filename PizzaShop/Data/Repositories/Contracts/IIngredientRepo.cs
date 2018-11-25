@@ -2,6 +2,7 @@
 using PizzaShop.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PizzaShop.Models;
 
 namespace PizzaShop.Data.Repositories
 {
@@ -10,6 +11,8 @@ namespace PizzaShop.Data.Repositories
         Task<IEnumerable<Ingredient>> GetIngredientsForPizza(int id);
 
         Task<IEnumerable<Ingredient>> GetIngredientsForCategory(IngredientCategory ingredientType);
+
+        Task<IEnumerable<IngredientViewModel>> GetAllIngredientsPerCategory();
 
         Task<int> PutIngredientsOnPizza(int pizzaId, int[] ingredientIds);
 

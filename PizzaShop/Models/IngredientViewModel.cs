@@ -8,6 +8,6 @@ namespace PizzaShop.Models
     {
         public IngredientCategory Category { get; set; }
 
-        public IEnumerable<Ingredient> Ingredients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
     }
 }

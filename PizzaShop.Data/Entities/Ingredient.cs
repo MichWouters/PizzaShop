@@ -5,11 +5,8 @@ namespace PizzaShop.Data.Entities
 {
     public class Ingredient : Entity
     {
-        [Key]
         public int IngredientId { get; set; }
 
-        [Required]
-        [MaxLength(100)]
         public string Name { get; set; }
 
         [Required]
