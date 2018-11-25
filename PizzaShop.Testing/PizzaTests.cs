@@ -1,8 +1,8 @@
 using Moq;
+using PizzaShop.Business.Models;
+using PizzaShop.Business.Services;
 using PizzaShop.Data.Entities;
-using PizzaShop.Data.Repositories;
-using PizzaShop.Models;
-using PizzaShop.Services;
+using PizzaShop.Data.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,50 +13,48 @@ namespace PizzaShop.Testing
 {
     public class PizzaTests
     {
-        private IPizzaService _service;
-        private Mock<IPizzaRepo> mockPizzaRepo;
-        private Mock<IIngredientRepo> mockIngredientRepo;
+        private readonly IPizzaService _service;
+        private readonly Mock<IPizzaRepo> _mockPizzaRepo;
+        private readonly Mock<IIngredientRepo> _mockIngredientRepo;
 
         public PizzaTests()
         {
-            mockPizzaRepo = new Mock<IPizzaRepo>();
-            mockIngredientRepo = new Mock<IIngredientRepo>();
-            _service = new PizzaService(mockPizzaRepo.Object, mockIngredientRepo.Object);
+            _mockPizzaRepo = new Mock<IPizzaRepo>();
+            _mockIngredientRepo = new Mock<IIngredientRepo>();
+            _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
         }
 
         [Fact]
         public async Task Can_Map_Pizza_From_Entity()
         {
             // Arrange
-            mockPizzaRepo.Setup(x => x.GetEntityAsync(
+            _mockPizzaRepo.Setup(x => x.GetEntityAsync(
                 It.IsAny<int>()))
                 .ReturnsAsync(GetMockPizzaEntity());
 
             // Act
             PizzaViewModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
-            viewModel = (PizzaViewModel)viewModel.Convert();
+            viewModel = (PizzaViewModel)viewModel.ConvertUnmappableValues();
 
             // Assert
-            Assert.Equal("~/images/margherita.jpg", viewModel.Image);
+            Assert.Equal("~/images/margarita.jpg", viewModel.Image);
             Assert.Equal("TestPizzaEntity", viewModel.Name);
             Assert.Equal(5.14M, viewModel.Price);
             Assert.Equal(3, viewModel.Ingredients.Count());
         }
 
-        private PizzaViewModel GetMockPizzaViewModel()
+        [Fact]
+        public void When_Exception_Thrown_During_Save_Transaction_Should_RollBack()
         {
-            return new PizzaViewModel
-            {
-                Name = "TestPizzaViewModel",
-                Price = 5.14M,
-                Image = "~/images/margherita.jpg",
-                Ingredients = new List<Ingredient>
-                {
-                    new Ingredient{ IngredientId = 1},
-                    new Ingredient{ IngredientId = 2},
-                    new Ingredient{ IngredientId = 3}
-                }
-            };
+            // Arrange
+            _mockPizzaRepo.Setup(x => x.AddEntityAsync(
+                    It.IsAny<Pizza>()))
+                .ReturnsAsync(1);
+
+            // Act
+            _mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
+                It.IsAny<int>(), It.IsAny<int[]>())
+            ).ThrowsAsync(new Exception());
         }
 
         private Pizza GetMockPizzaEntity()
@@ -65,7 +63,7 @@ namespace PizzaShop.Testing
             {
                 Name = "TestPizzaEntity",
                 Price = 5.14M,
-                Image = "margherita.jpg",
+                Image = "margarita.jpg",
                 PizzaIngredients = new List<PizzaIngredient>
                 {
                     new PizzaIngredient{ PizzaId= 1, IngredientId = 1},
@@ -75,19 +73,20 @@ namespace PizzaShop.Testing
             };
         }
 
-        [Fact]
-        public void When_Exception_Thrown_During_Save_Transaction_Should_RollBack()
+        private PizzaViewModel GetMockPizzaViewModel()
         {
-            // Arrange
-            mockPizzaRepo.Setup(x => x.AddEntityAsync(
-                It.IsAny<Pizza>()))
-                .ReturnsAsync(1);
-
-            // Act 
-            mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
-                It.IsAny<int>(), It.IsAny<int[]>())
-                ).ThrowsAsync(new Exception());
-            
+            return new PizzaViewModel
+            {
+                Name = "TestPizzaViewModel",
+                Price = 5.14M,
+                Image = "~/images/margarita.jpg",
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient{ IngredientId = 1},
+                    new Ingredient{ IngredientId = 2},
+                    new Ingredient{ IngredientId = 3}
+                }
+            };
         }
     }
 }
