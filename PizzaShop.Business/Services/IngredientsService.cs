@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PizzaShop.Business.Models;
+﻿using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Enums;
 using PizzaShop.Data.Repositories.Contracts;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PizzaShop.Business.Services
 {
@@ -26,8 +26,10 @@ namespace PizzaShop.Business.Services
                 (category, ingredients) => new IngredientViewModel()
                 {
                     Category = (IngredientCategory)category,
-                    Ingredients = null
-                }).ToList();
+                    Ingredients = MapFromEntities(ingredients)
+                })
+                .OrderBy(x => x.Category.ToString())
+                .ToList();
 
             return viewModels;
         }
