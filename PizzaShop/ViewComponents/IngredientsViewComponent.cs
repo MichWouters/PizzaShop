@@ -4,6 +4,7 @@ using PizzaShop.Data.Repositories;
 using PizzaShop.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PizzaShop.Data.Repositories.Contracts;
 
 namespace PizzaShop.ViewComponents
 {

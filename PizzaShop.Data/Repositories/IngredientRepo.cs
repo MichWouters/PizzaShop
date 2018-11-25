@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
-using PizzaShop.Enums;
+using PizzaShop.Data.Enums;
+using PizzaShop.Data.Repositories.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PizzaShop.Models;
 
 namespace PizzaShop.Data.Repositories
 {
@@ -66,7 +66,7 @@ namespace PizzaShop.Data.Repositories
         public async Task<IEnumerable<Ingredient>> GetIngredientsForCategory(IngredientCategory ingredientType)
         {
             IEnumerable<Ingredient> result = await _context.Ingredients
-                .Where(x => x.Type == (int) ingredientType)
+                .Where(x => x.Type == (int)ingredientType)
                 .ToListAsync();
 
             return result;
@@ -77,7 +77,7 @@ namespace PizzaShop.Data.Repositories
             for (int i = 0; i < ingredientIds.Length; i++)
             {
                 _context.PizzaIngredients.Add(
-                    new PizzaIngredient {PizzaId = pizzaId, IngredientId = ingredientIds[i]});
+                    new PizzaIngredient { PizzaId = pizzaId, IngredientId = ingredientIds[i] });
             }
 
             return await _context.SaveChangesAsync();
@@ -88,19 +88,19 @@ namespace PizzaShop.Data.Repositories
             for (int i = 0; i < ingredientIds.Length; i++)
             {
                 _context.PizzaIngredients.Remove(
-                    new PizzaIngredient {PizzaId = pizzaId, IngredientId = ingredientIds[i]});
+                    new PizzaIngredient { PizzaId = pizzaId, IngredientId = ingredientIds[i] });
             }
 
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<IngredientViewModel>> GetAllIngredientsPerCategory()
+        public async Task<IEnumerable<object>> GetAllIngredientsPerCategory()
         {
             var viewModels = await _context.Ingredients.GroupBy(
                 x => x.Type,
-                (key, g) => new IngredientViewModel
+                (key, g) => new
                 {
-                    Category = (IngredientCategory) key,
+                    Category = (IngredientCategory)key,
                     Ingredients = _context.Ingredients.Where(y => y.Type == key).ToList()
                 }).ToListAsync();
 

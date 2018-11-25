@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace PizzaShop.Migrations
+namespace PizzaShop.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class refactoring : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,7 +79,7 @@ namespace PizzaShop.Migrations
                     ModifiedBy = table.Column<string>(maxLength: 100, nullable: true),
                     IngredientId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     IsVegetarian = table.Column<bool>(nullable: false),
                     Type = table.Column<int>(nullable: false)
                 },
@@ -98,8 +98,9 @@ namespace PizzaShop.Migrations
                     PizzaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false)
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -297,24 +298,37 @@ namespace PizzaShop.Migrations
                 columns: new[] { "IngredientId", "DateCreated", "DateModified", "IsVegetarian", "ModifiedBy", "Name", "Type" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2018, 10, 29, 11, 18, 53, 964, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Tomato", 6 },
-                    { 2, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Mozarella", 1 },
-                    { 3, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Salami", 2 },
-                    { 4, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Thyme", 4 },
-                    { 5, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Chicken", 2 },
-                    { 6, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Anchovie", 3 },
-                    { 7, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Onion", 5 },
-                    { 8, new DateTime(2018, 10, 29, 11, 18, 53, 966, DateTimeKind.Local), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "BBQ Sauce", 7 }
+                    { 1, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Tomato", 6 },
+                    { 21, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Foo", 7 },
+                    { 20, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Vinegar", 7 },
+                    { 19, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Olive Oil", 7 },
+                    { 18, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "BBQ Sauce", 7 },
+                    { 17, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Green peppers", 5 },
+                    { 16, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Onion", 5 },
+                    { 15, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Squid", 3 },
+                    { 14, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Salmon", 3 },
+                    { 13, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Anchovies", 3 },
+                    { 12, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Salt", 4 },
+                    { 10, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Thyme", 4 },
+                    { 9, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Chicken", 2 },
+                    { 8, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Meringue", 2 },
+                    { 7, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Bacon", 2 },
+                    { 6, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "Salami", 2 },
+                    { 5, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Parmesan", 1 },
+                    { 4, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Gouda", 1 },
+                    { 3, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Mozzarella", 1 },
+                    { 2, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Olives", 6 },
+                    { 11, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, "Pepper", 4 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Pizzas",
-                columns: new[] { "PizzaId", "DateCreated", "DateModified", "Image", "ModifiedBy", "Name", "Price" },
+                columns: new[] { "PizzaId", "DateCreated", "DateModified", "Description", "Image", "ModifiedBy", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Margherita", 4.99 },
-                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Pepperoni", 6.99 },
-                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "Meat Lovers", 8.99 }
+                    { 2, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "If you've ever wished your pepperoni pizza had more pepperoni on it, then this pizza is for you! This oven-fresh pizza has 50% more pepperoni than our average pizza pie.", "pepperoni.jpg", null, "Pepperoni", 6.99m },
+                    { 1, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "The traditional toppings on a Margarita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness.", "margarita.jpg", null, "Margarita", 4.99m },
+                    { 3, new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef.", "meat-lovers.jpg", null, "Meat Lovers", 8.99m }
                 });
 
             migrationBuilder.InsertData(
@@ -323,15 +337,24 @@ namespace PizzaShop.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1 },
+                    { 17, 17, 3 },
+                    { 16, 8, 3 },
+                    { 15, 7, 3 },
+                    { 14, 6, 3 },
+                    { 13, 3, 3 },
+                    { 12, 2, 3 },
+                    { 11, 1, 3 },
+                    { 18, 19, 3 },
+                    { 10, 19, 2 },
+                    { 8, 6, 2 },
+                    { 7, 3, 2 },
+                    { 6, 2, 2 },
+                    { 5, 1, 2 },
+                    { 4, 19, 1 },
+                    { 3, 3, 1 },
                     { 2, 2, 1 },
-                    { 3, 1, 2 },
-                    { 4, 2, 2 },
-                    { 5, 3, 2 },
-                    { 6, 1, 3 },
-                    { 7, 2, 3 },
-                    { 8, 3, 3 },
-                    { 9, 4, 3 },
-                    { 10, 5, 3 }
+                    { 9, 11, 2 },
+                    { 19, 20, 3 }
                 });
 
             migrationBuilder.CreateIndex(

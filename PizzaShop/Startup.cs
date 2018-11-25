@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PizzaShop.Data;
 using PizzaShop.Data.Repositories;
+using PizzaShop.Data.Repositories.Contracts;
 using PizzaShop.Services;
 
 namespace PizzaShop

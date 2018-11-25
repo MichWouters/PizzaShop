@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
-using PizzaShop.Enums;
+using PizzaShop.Data.Enums;
 
 namespace PizzaShop.Data
 {
@@ -33,7 +33,7 @@ namespace PizzaShop.Data
             builder.Entity<Ingredient>().HasData(
                 new Ingredient { IngredientId = 1, Name = "Tomato", IsVegetarian = true, Type = (int)IngredientCategory.Fruit },
                 new Ingredient { IngredientId = 2, Name = "Olives", IsVegetarian = true, Type = (int)IngredientCategory.Fruit },
-                new Ingredient { IngredientId = 3, Name = "Mozarella", IsVegetarian = true, Type = (int)IngredientCategory.Cheese },
+                new Ingredient { IngredientId = 3, Name = "Mozzarella", IsVegetarian = true, Type = (int)IngredientCategory.Cheese },
                 new Ingredient { IngredientId = 4, Name = "Gouda", IsVegetarian = true, Type = (int)IngredientCategory.Cheese },
                 new Ingredient { IngredientId = 5, Name = "Parmesan", IsVegetarian = true, Type = (int)IngredientCategory.Cheese },
                 new Ingredient { IngredientId = 6, Name = "Salami", IsVegetarian = false, Type = (int)IngredientCategory.Meat },
@@ -50,11 +50,12 @@ namespace PizzaShop.Data
                 new Ingredient { IngredientId = 17, Name = "Green peppers", IsVegetarian = true, Type = (int)IngredientCategory.Vegetables },
                 new Ingredient { IngredientId = 18, Name = "BBQ Sauce", IsVegetarian = true, Type = (int)IngredientCategory.Sauce },
                 new Ingredient { IngredientId = 19, Name = "Olive Oil", IsVegetarian = true, Type = (int)IngredientCategory.Sauce },
-                new Ingredient { IngredientId = 20, Name = "Vinegar", IsVegetarian = true, Type = (int)IngredientCategory.Sauce }
+                new Ingredient { IngredientId = 20, Name = "Vinegar", IsVegetarian = true, Type = (int)IngredientCategory.Sauce },
+                new Ingredient { IngredientId = 21, Name = "Foo", IsVegetarian = true, Type = (int)IngredientCategory.Sauce }
                 );
 
             builder.Entity<Pizza>().HasData(
-                new Pizza { PizzaId = 1, Name = "Margarita", Price = 4.99M, Image = "margarita.jpg", Description = "The traditional toppings on a Margherita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness." },
+                new Pizza { PizzaId = 1, Name = "Margarita", Price = 4.99M, Image = "margarita.jpg", Description = "The traditional toppings on a Margarita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness." },
                 new Pizza { PizzaId = 2, Name = "Pepperoni", Price = 6.99M, Image = "pepperoni.jpg", Description = "If you've ever wished your pepperoni pizza had more pepperoni on it, then this pizza is for you! This oven-fresh pizza has 50% more pepperoni than our average pizza pie." },
                 new Pizza { PizzaId = 3, Name = "Meat Lovers", Price = 8.99M, Image = "meat-lovers.jpg", Description = "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef." }
                 );

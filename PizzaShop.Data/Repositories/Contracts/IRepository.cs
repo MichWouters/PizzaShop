@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PizzaShop.Data.Repositories
+namespace PizzaShop.Data.Repositories.Contracts
 {
     public interface IRepository<T> where T : Entities.Entity
     {

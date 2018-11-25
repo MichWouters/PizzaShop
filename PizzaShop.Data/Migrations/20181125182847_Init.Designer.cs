@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaShop.Data;
 
-namespace PizzaShop.Migrations
+namespace PizzaShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181125170919_moreIngredients")]
-    partial class moreIngredients
+    [Migration("20181125182847_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,9 +243,7 @@ namespace PizzaShop.Migrations
                     b.Property<string>("ModifiedBy")
                         .HasMaxLength(100);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<string>("Name");
 
                     b.Property<int>("Type");
 
@@ -256,24 +254,25 @@ namespace PizzaShop.Migrations
                     b.HasData(
                         new { IngredientId = 1, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Tomato", Type = 6 },
                         new { IngredientId = 2, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Olives", Type = 6 },
-                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozarella", Type = 1 },
+                        new { IngredientId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Mozzarella", Type = 1 },
                         new { IngredientId = 4, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Gouda", Type = 1 },
                         new { IngredientId = 5, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Parmesan", Type = 1 },
                         new { IngredientId = 6, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Salami", Type = 2 },
                         new { IngredientId = 7, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Bacon", Type = 2 },
-                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Merguez", Type = 2 },
+                        new { IngredientId = 8, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Meringue", Type = 2 },
                         new { IngredientId = 9, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = false, Name = "Chicken", Type = 2 },
                         new { IngredientId = 10, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Thyme", Type = 4 },
                         new { IngredientId = 11, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Pepper", Type = 4 },
                         new { IngredientId = 12, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Salt", Type = 4 },
-                        new { IngredientId = 13, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovie", Type = 3 },
+                        new { IngredientId = 13, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Anchovies", Type = 3 },
                         new { IngredientId = 14, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Salmon", Type = 3 },
                         new { IngredientId = 15, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Squid", Type = 3 },
                         new { IngredientId = 16, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Onion", Type = 5 },
                         new { IngredientId = 17, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Green peppers", Type = 5 },
                         new { IngredientId = 18, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "BBQ Sauce", Type = 7 },
                         new { IngredientId = 19, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Olive Oil", Type = 7 },
-                        new { IngredientId = 20, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Vinegar", Type = 7 }
+                        new { IngredientId = 20, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Vinegar", Type = 7 },
+                        new { IngredientId = 21, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), IsVegetarian = true, Name = "Foo", Type = 7 }
                     );
                 });
 
@@ -351,16 +350,17 @@ namespace PizzaShop.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<decimal>("Price");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("PizzaId");
 
                     b.ToTable("Pizzas");
 
                     b.HasData(
-                        new { PizzaId = 1, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "The traditional toppings on a Margherita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness.", Image = "margherita.jpg", Name = "Margherita", Price = 4.99m },
+                        new { PizzaId = 1, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "The traditional toppings on a Margarita pizza are fresh basil, fresh tomatoes, olive oil, sea salt, garlic, and mozzarella. Typically, the tomatoes are sliced and scattered across the dough before finely chopped garlic and basil are sprinkled on, followed by rounds of thinly sliced cheese. The pizza is drizzled lightly with olive oil and sea salt just before baking, and when well made, it is crisp without any trace of greasiness.", Image = "margarita.jpg", Name = "Margarita", Price = 4.99m },
                         new { PizzaId = 2, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "If you've ever wished your pepperoni pizza had more pepperoni on it, then this pizza is for you! This oven-fresh pizza has 50% more pepperoni than our average pizza pie.", Image = "pepperoni.jpg", Name = "Pepperoni", Price = 6.99m },
-                        new { PizzaId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef.", Image = "meatlovers.jpg", Name = "Meat Lovers", Price = 8.99m }
+                        new { PizzaId = 3, DateCreated = new DateTime(2018, 11, 24, 23, 0, 0, 0, DateTimeKind.Utc), DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Description = "Meat lover's pizza is the perfect game day pizza, packed with pepperoni, Italian sausage, ham, bacon, season pork and beef.", Image = "meat-lovers.jpg", Name = "Meat Lovers", Price = 8.99m }
                     );
                 });
 

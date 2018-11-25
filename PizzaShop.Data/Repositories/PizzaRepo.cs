@@ -3,6 +3,7 @@ using PizzaShop.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PizzaShop.Data.Repositories.Contracts;
 
 namespace PizzaShop.Data.Repositories
 {
@@ -35,7 +36,7 @@ namespace PizzaShop.Data.Repositories
 
         public async Task<int> DeleteEntityAsync(Pizza entity)
         {
-            // Delete Scaffolded items
+            // Delete scaffolded items
             var parentEntity = _context.Pizzas
                 .Include(x => x.PizzaIngredients)
                 .Single(x => x.PizzaId == entity.PizzaId);
@@ -58,7 +59,7 @@ namespace PizzaShop.Data.Repositories
 
         public async Task<Pizza> GetPizzaWithIngredientsAsync(int? id, bool includeIngredientData)
         {
-            Pizza entity = null;
+            Pizza entity;
 
             if (includeIngredientData)
             {

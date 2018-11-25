@@ -1,4 +1,4 @@
-﻿namespace PizzaShop.Enums
+﻿namespace PizzaShop.Data.Enums
 {
     public enum IngredientCategory
     {

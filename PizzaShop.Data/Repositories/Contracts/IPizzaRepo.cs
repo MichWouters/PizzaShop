@@ -1,7 +1,7 @@
-﻿using PizzaShop.Data.Entities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using PizzaShop.Data.Entities;
 
-namespace PizzaShop.Data.Repositories
+namespace PizzaShop.Data.Repositories.Contracts
 {
     public interface IPizzaRepo : IRepository<Pizza>
     {
