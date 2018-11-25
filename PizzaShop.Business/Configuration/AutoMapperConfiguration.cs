@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
-using PizzaShop.Models;
 
 namespace PizzaShop.Services
 {

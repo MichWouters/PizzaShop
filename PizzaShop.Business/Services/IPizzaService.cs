@@ -1,8 +1,7 @@
-﻿using PizzaShop.Models;
-using PizzaShop.Data.Entities;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using PizzaShop.Business.Models;
 
-namespace PizzaShop.Services
+namespace PizzaShop.Business.Services
 {
     public interface IPizzaService
     {

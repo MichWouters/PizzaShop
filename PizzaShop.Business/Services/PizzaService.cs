@@ -1,12 +1,12 @@
-﻿using PizzaShop.Data.Entities;
-using PizzaShop.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
+using PizzaShop.Business.Models;
+using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
 
-namespace PizzaShop.Services
+namespace PizzaShop.Business.Services
 {
     public class PizzaService : MappableService<Pizza, PizzaViewModel>, IPizzaService
     {

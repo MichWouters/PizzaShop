@@ -1,12 +1,12 @@
-﻿using PizzaShop.Data.Entities;
-using PizzaShop.Data.Enums;
-using PizzaShop.Data.Repositories.Contracts;
-using PizzaShop.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PizzaShop.Business.Models;
+using PizzaShop.Data.Entities;
+using PizzaShop.Data.Enums;
+using PizzaShop.Data.Repositories.Contracts;
 
-namespace PizzaShop.Services
+namespace PizzaShop.Business.Services
 {
     public class IngredientsService : MappableService<Ingredient, IngredientModel>, IIngredientService
     {
@@ -32,6 +32,4 @@ namespace PizzaShop.Services
             return viewModels;
         }
     }
-
-
 }

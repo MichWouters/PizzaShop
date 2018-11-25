@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PizzaShop.Models;
 using PizzaShop.Services;
 using System.Diagnostics;
+using PizzaShop.Business.Models;
+using PizzaShop.Business.Services;
 
 namespace PizzaShop.Controllers
 {

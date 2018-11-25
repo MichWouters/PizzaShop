@@ -1,12 +1,13 @@
 using Moq;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories;
-using PizzaShop.Models;
 using PizzaShop.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PizzaShop.Business.Models;
+using PizzaShop.Business.Services;
 using PizzaShop.Data.Repositories.Contracts;
 using Xunit;
 

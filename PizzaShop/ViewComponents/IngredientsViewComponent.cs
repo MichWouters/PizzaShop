@@ -1,42 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PizzaShop.Data.Entities;
-using PizzaShop.Data.Enums;
-using PizzaShop.Data.Repositories.Contracts;
-using PizzaShop.Models;
-using System.Collections.Generic;
-using System.Linq;
+using PizzaShop.Services;
 using System.Threading.Tasks;
+using PizzaShop.Business.Services;
 
 namespace PizzaShop.ViewComponents
 {
     public class IngredientsViewComponent : ViewComponent
     {
-        private readonly IIngredientRepo _repo;
+        private readonly IIngredientService _service;
 
-        public IngredientsViewComponent(IIngredientRepo repo)
+        public IngredientsViewComponent(IIngredientService service)
         {
-            _repo = repo;
-        }
-
-        private async Task<IEnumerable<IngredientViewModel>> GetIngredientsAsync()
-        {
-            IEnumerable<Ingredient> result = await _repo.GetAllAsync();
-
-            var viewModels = result.GroupBy(
-                x => x.Type,
-                (category, ingredients) => new IngredientViewModel()
-                {
-                    Category = (IngredientCategory)category,
-                    Ingredients = ingredients.ToList()
-                }).ToList();
-
-            return viewModels;
+            _service = service;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             string MyView = "Ingredients";
-            var items = await GetIngredientsAsync();
+            var items = await _service.GetIngredientsAsync();
 
             return View(MyView, items);
         }

@@ -1,8 +1,8 @@
-﻿using PizzaShop.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using PizzaShop.Business.Models;
 
-namespace PizzaShop.Services
+namespace PizzaShop.Business.Services
 {
     public interface IIngredientService
     {

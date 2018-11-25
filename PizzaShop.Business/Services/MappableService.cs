@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration;
+using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
-using PizzaShop.Models;
+using PizzaShop.Services;
 
-namespace PizzaShop.Services
+namespace PizzaShop.Business.Services
 {
     public abstract class MappableService<TEntity, TModel>
         where TEntity : Entity

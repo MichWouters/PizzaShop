@@ -1,7 +1,7 @@
-﻿using PizzaShop.Data.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PizzaShop.Data.Entities;
 
-namespace PizzaShop.Models
+namespace PizzaShop.Business.Models
 {
     public class PizzaViewModel : Model
     {

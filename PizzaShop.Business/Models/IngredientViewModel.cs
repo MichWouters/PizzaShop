@@ -1,8 +1,7 @@
-﻿using PizzaShop.Data.Entities;
+﻿using System.Collections.Generic;
 using PizzaShop.Data.Enums;
-using System.Collections.Generic;
 
-namespace PizzaShop.Models
+namespace PizzaShop.Business.Models
 {
     public class IngredientViewModel : Model
     {

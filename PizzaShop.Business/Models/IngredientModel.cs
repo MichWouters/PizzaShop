@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PizzaShop.Data.Enums;
+﻿using PizzaShop.Data.Enums;
 
-namespace PizzaShop.Models
+namespace PizzaShop.Business.Models
 {
     public class IngredientModel: Model
     {
