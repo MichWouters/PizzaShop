@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using PizzaShop.Data.Entities;
-
-namespace PizzaShop.Business.Models
+﻿namespace PizzaShop.Business.Models
 {
     public class PizzaViewModel : Model
     {
@@ -15,14 +12,8 @@ namespace PizzaShop.Business.Models
 
         public decimal Price { get; set; }
 
-        public IEnumerable<Ingredient> Ingredients { get; set; }
+        public string[] Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
-
-        public override Model ConvertUnmappableValues()
-        {
-            Image = "../../Images/" + Image;
-            return this;
-        }
     }
 }

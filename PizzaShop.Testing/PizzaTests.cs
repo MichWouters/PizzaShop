@@ -33,8 +33,7 @@ namespace PizzaShop.Testing
                 .ReturnsAsync(GetMockPizzaEntity());
 
             // Act
-            PizzaViewModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
-            viewModel = (PizzaViewModel)viewModel.ConvertUnmappableValues();
+            PizzaModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
 
             // Assert
             Assert.Equal("~/images/margarita.jpg", viewModel.Image);
@@ -73,9 +72,9 @@ namespace PizzaShop.Testing
             };
         }
 
-        private PizzaViewModel GetMockPizzaViewModel()
+        private PizzaModel GetMockPizzaViewModel()
         {
-            return new PizzaViewModel
+            return new PizzaModel
             {
                 Name = "TestPizzaViewModel",
                 Price = 5.14M,

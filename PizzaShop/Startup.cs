@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PizzaShop.Business.Services;
+using PizzaShop.Configuration;
 using PizzaShop.Data;
 using PizzaShop.Data.Repositories;
 using PizzaShop.Data.Repositories.Contracts;
@@ -36,6 +37,8 @@ namespace PizzaShop
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+           
+
             // Dependency Injection
             services.AddTransient<IPizzaRepo, PizzaRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();
@@ -46,6 +49,9 @@ namespace PizzaShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Set up AutoMapper
+            AutoMapperConfiguration.RegisterMaps();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
