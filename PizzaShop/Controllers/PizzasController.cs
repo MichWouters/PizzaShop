@@ -5,6 +5,7 @@ using PizzaShop.Data.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 using PizzaShop.Business.Services;
+using PizzaShop.Business.Models;
 
 namespace PizzaShop.Controllers
 {
@@ -33,14 +34,16 @@ namespace PizzaShop.Controllers
                 return NotFound();
             }
 
-            var pizza = await _service.GetPizzaWithIngredientsAsync(id);
+            PizzaModel model = await _service.GetPizzaWithIngredientsAsync(id);
+            PizzaDetailViewModel viewModel = new PizzaDetailViewModel();
+            viewModel = AutoMapper.Mapper.Map(model, viewModel);
 
-            if (pizza == null)
+            if (viewModel == null)
             {
                 return NotFound();
             }
 
-            return View(pizza);
+            return View(viewModel);
         }
 
         public IActionResult Create()

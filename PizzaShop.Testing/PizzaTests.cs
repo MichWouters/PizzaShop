@@ -1,6 +1,7 @@
 using Moq;
 using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
+using PizzaShop.Configuration;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
 using System;
@@ -22,6 +23,7 @@ namespace PizzaShop.Testing
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
+            AutoMapperConfiguration.RegisterMaps();
         }
 
         [Fact]
@@ -36,7 +38,7 @@ namespace PizzaShop.Testing
             PizzaModel viewModel = await _service.GetPizzaWithIngredientsAsync(55);
 
             // Assert
-            Assert.Equal("~/images/margarita.jpg", viewModel.Image);
+            Assert.Equal("images/margarita.jpg", viewModel.Image);
             Assert.Equal("TestPizzaEntity", viewModel.Name);
             Assert.Equal(5.14M, viewModel.Price);
             Assert.Equal(3, viewModel.Ingredients.Count());
@@ -54,6 +56,9 @@ namespace PizzaShop.Testing
             _mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
                 It.IsAny<int>(), It.IsAny<int[]>())
             ).ThrowsAsync(new Exception());
+
+            // Assert
+            throw new NotImplementedException();
         }
 
         private Pizza GetMockPizzaEntity()

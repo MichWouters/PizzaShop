@@ -1,6 +1,6 @@
 ﻿namespace PizzaShop.Business.Models
 {
-    public class PizzaViewModel : Model
+    public class PizzaDetailViewModel : Model
     {
         public int PizzaId { get; set; }
 

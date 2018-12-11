@@ -37,8 +37,6 @@ namespace PizzaShop
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-           
-
             // Dependency Injection
             services.AddTransient<IPizzaRepo, PizzaRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();

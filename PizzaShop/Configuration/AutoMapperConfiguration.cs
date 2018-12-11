@@ -9,16 +9,19 @@ namespace PizzaShop.Configuration
     {
         public static void RegisterMaps()
         {
-            Mapper.Initialize(config =>
+            Mapper.Initialize(cfg =>
             {
-                config.CreateMap<Pizza, PizzaModel>()
-                    .ForMember(model => model.Ingredients, x => x.MapFrom(entity => entity.PizzaIngredients))
+                cfg.CreateMap<Pizza, PizzaModel>()
                     .ReverseMap();
 
-                config.CreateMap<PizzaModel, PizzaViewModel>()
+                cfg.CreateMap<PizzaModel, PizzaDetailViewModel>()
                     .ConvertUsing<PizzaViewModelConverter>();
 
-                config.CreateMap<Ingredient, IngredientModel>()
+                cfg.CreateMap<Ingredient, IngredientModel>()
+                    .ForMember(x => x.Id, y => y.MapFrom(z => z.IngredientId))
+                    .ForMember(x => x.IsVegetarian, y => y.MapFrom(z => z.IsVegetarian))
+                    .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
+                    .ForMember(x => x.Type, y => y.MapFrom(z => z.Type))
                     .ReverseMap();
             });
         }
