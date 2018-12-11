@@ -6,6 +6,6 @@ namespace PizzaShop.Business.Services
 {
     public interface IIngredientService
     {
-        Task<IEnumerable<IngredientViewModel>> GetIngredientsAsync();
+        Task<IEnumerable<IngredientModel>> GetIngredientsAsync();
     }
 }

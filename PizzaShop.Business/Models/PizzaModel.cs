@@ -3,7 +3,7 @@ using PizzaShop.Data.Entities;
 
 namespace PizzaShop.Business.Models
 {
-    public class PizzaViewModel : Model
+    public class PizzaModel : Model
     {
         public int PizzaId { get; set; }
 
@@ -18,11 +18,5 @@ namespace PizzaShop.Business.Models
         public IEnumerable<Ingredient> Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
-
-        public override Model ConvertUnmappableValues()
-        {
-            Image = "../../Images/" + Image;
-            return this;
-        }
     }
 }

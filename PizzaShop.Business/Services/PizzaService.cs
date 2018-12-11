@@ -8,7 +8,7 @@ using PizzaShop.Data.Repositories.Contracts;
 
 namespace PizzaShop.Business.Services
 {
-    public class PizzaService : MappableService<Pizza, PizzaViewModel>, IPizzaService
+    public class PizzaService : IPizzaService
     {
         private readonly IPizzaRepo _pizzaRepo;
         private readonly IIngredientRepo _ingredientRepo;
@@ -19,7 +19,7 @@ namespace PizzaShop.Business.Services
             _ingredientRepo = ingredientRepo;
         }
 
-        public async Task<PizzaViewModel> GetPizzaWithIngredientsAsync(int? id)
+        public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int? id)
         {
             if (id == null || id == 0)
             {
@@ -28,23 +28,22 @@ namespace PizzaShop.Business.Services
 
             int verifiedId = (int) id;
             Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
-            PizzaViewModel pizzaModel = MapFromEntity(pizza);
-            pizzaModel = (PizzaViewModel)pizzaModel.ConvertUnmappableValues();
+            PizzaModel pizzaModel = AutoMapper.Mapper.Map<PizzaModel>(pizza);
 
             pizzaModel.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
 
             return pizzaModel;
         }
 
-        public async Task SavePizza(PizzaViewModel pizzaModel)
+        public async Task SavePizza(PizzaModel pizzaModel)
         {
-            var pizza = MapToEntity(pizzaModel);
+            Pizza pizzaEntity = AutoMapper.Mapper.Map<Pizza>(pizzaModel);
 
             // Todo: Verify security checks
 
             using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted }))
             {
-                int pizzaRows = await _pizzaRepo.AddEntityAsync(pizza);
+                int pizzaRows = await _pizzaRepo.AddEntityAsync(pizzaEntity);
                 int ingredientRows = await _ingredientRepo.PutIngredientsOnPizza(
                     pizzaModel.PizzaId,
                     pizzaModel.Ingredients.Select(x => x.IngredientId).ToArray());
