@@ -4,7 +4,7 @@ using PizzaShop.Data.Repositories.Contracts;
 using System;
 using Xunit;
 
-namespace PizzaShop.Testing.Presentation
+namespace PizzaShop.Testing.Data
 {
     public class PizzaDataTests
     {
@@ -26,13 +26,14 @@ namespace PizzaShop.Testing.Presentation
                     It.IsAny<Pizza>()))
                 .ReturnsAsync(1);
 
-            // Act
             _mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
                 It.IsAny<int>(), It.IsAny<int[]>())
             ).ThrowsAsync(new Exception());
 
-            // Assert
+            // Act
             throw new NotImplementedException();
+
+            // Assert
         }
     }
 }

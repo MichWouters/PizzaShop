@@ -1,28 +1,29 @@
-using Moq;
+﻿using Moq;
 using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
 using PizzaShop.Configuration;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace PizzaShop.Testing
+namespace PizzaShop.Testing.Business
 {
-    public class PizzaTests
+    public class PizzaBusinessTests
     {
         private readonly IPizzaService _service;
         private readonly Mock<IPizzaRepo> _mockPizzaRepo;
         private readonly Mock<IIngredientRepo> _mockIngredientRepo;
 
-        public PizzaTests()
+        public PizzaBusinessTests()
         {
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
-            AutoMapperPresentationConfiguration.RegisterMaps();
+            AutoMapperBusinessConfiguration.RegisterMaps();
         }
 
         [Fact]
@@ -43,7 +44,28 @@ namespace PizzaShop.Testing
             Assert.Equal(3, model.Ingredients.Count());
         }
 
-        
+        [Fact]
+        public async Task Can_Calculate_ValuesCorrectly()
+        {
+            // Arrange
+            _mockPizzaRepo.Setup(x => x.GetEntityAsync(
+                It.IsAny<int>()))
+                .ReturnsAsync(GetMockPizzaEntity());
+
+            // Act
+            PizzaModel model = await _service.GetPizzaWithIngredientsAsync(55);
+
+            // Assert
+            Assert.Equal(0.31M, model.VAT);
+        }
+
+        [Fact]
+        public async Task NoInput_GetPizzaWithIngredientsAsync_ThrowsArgumentNullException()
+        {
+            var code = _service.GetPizzaWithIngredientsAsync(0);
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await code);
+        }
+
 
         private Pizza GetMockPizzaEntity()
         {
