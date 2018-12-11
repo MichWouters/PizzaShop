@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PizzaShop.Business.Converters;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 
@@ -11,7 +12,7 @@ namespace PizzaShop.Configuration
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Pizza, PizzaModel>()
-                    .ReverseMap();
+                    .ConvertUsing<PizzaModelConverter>();
 
                 cfg.CreateMap<Ingredient, IngredientModel>()
                     .ForMember(x => x.Id, y => y.MapFrom(z => z.IngredientId))

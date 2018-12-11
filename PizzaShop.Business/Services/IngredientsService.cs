@@ -1,5 +1,4 @@
 ﻿using PizzaShop.Business.Models;
-using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
 using System.Collections.Generic;
 using System.Threading.Tasks;

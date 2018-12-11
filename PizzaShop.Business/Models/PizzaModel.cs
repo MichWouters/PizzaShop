@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using PizzaShop.Data.Entities;
+﻿using PizzaShop.Data.Entities;
+using System.Collections.Generic;
 
 namespace PizzaShop.Business.Models
 {
@@ -14,6 +14,8 @@ namespace PizzaShop.Business.Models
         public string Image { get; set; }
 
         public decimal Price { get; set; }
+
+        public decimal VAT { get; set; }
 
         public IEnumerable<Ingredient> Ingredients { get; set; }
 

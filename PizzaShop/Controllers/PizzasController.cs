@@ -34,7 +34,7 @@ namespace PizzaShop.Controllers
                 return NotFound();
             }
 
-            PizzaModel model = await _service.GetPizzaWithIngredientsAsync(id);
+            PizzaModel model = await _service.GetPizzaWithIngredientsAsync((int)id);
             PizzaDetailViewModel viewModel = new PizzaDetailViewModel();
             viewModel = AutoMapper.Mapper.Map(model, viewModel);
 

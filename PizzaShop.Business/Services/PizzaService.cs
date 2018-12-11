@@ -19,19 +19,18 @@ namespace PizzaShop.Business.Services
             _ingredientRepo = ingredientRepo;
         }
 
-        public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int? id)
+        public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int id)
         {
-            if (id == null || id == 0)
+            if (id == 0)
             {
                 throw new ArgumentNullException(nameof(id));
             }
 
-            int verifiedId = (int) id;
+            int verifiedId = id;
             Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
-            PizzaModel pizzaModel = AutoMapper.Mapper.Map<PizzaModel>(pizza);
-
-            pizzaModel.Ingredients = await _ingredientRepo.GetIngredientsForPizza(verifiedId);
-
+            PizzaModel pizzaModel = new PizzaModel();
+            pizzaModel = AutoMapper.Mapper.Map(pizza, pizzaModel);
+            
             return pizzaModel;
         }
 
