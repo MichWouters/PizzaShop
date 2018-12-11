@@ -48,7 +48,7 @@ namespace PizzaShop
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Set up AutoMapper
-            AutoMapperConfiguration.RegisterMaps();
+            AutoMapperPresentationConfiguration.RegisterMaps();
 
             if (env.IsDevelopment())
             {

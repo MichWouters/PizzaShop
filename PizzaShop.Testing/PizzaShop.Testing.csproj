@@ -23,4 +23,8 @@
     <ProjectReference Include="..\PizzaShop\PizzaShop.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
+
 </Project>
