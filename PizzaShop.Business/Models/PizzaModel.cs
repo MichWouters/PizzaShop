@@ -17,8 +17,11 @@ namespace PizzaShop.Business.Models
 
         public decimal VAT { get; set; }
 
+        public decimal Total { get; internal set; }
+
         public IEnumerable<Ingredient> Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
+
     }
 }

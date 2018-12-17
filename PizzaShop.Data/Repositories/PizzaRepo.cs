@@ -57,11 +57,11 @@ namespace PizzaShop.Data.Repositories
             return entity;
         }
 
-        public async Task<Pizza> GetPizzaWithIngredientsAsync(int? id, bool includeIngredientData)
+        public async Task<Pizza> GetPizzaWithIngredientsAsync(int? id, bool includeIdsOnly = false)
         {
             Pizza entity;
 
-            if (includeIngredientData)
+            if (!includeIdsOnly)
             {
                 entity = await _context.Pizzas
                 .Include(pizza => pizza.PizzaIngredients)

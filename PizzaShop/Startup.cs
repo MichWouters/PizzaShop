@@ -42,14 +42,13 @@ namespace PizzaShop
             services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
             services.AddTransient<IIngredientService, IngredientsService>();
+            // Set up AutoMapper
+            AutoMapperConfig.RegisterAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Set up AutoMapper
-            AutoMapperPresentationConfiguration.RegisterMaps();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

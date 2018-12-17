@@ -1,7 +1,6 @@
 ﻿using Moq;
 using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
-using PizzaShop.Configuration;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
 using System;
@@ -23,7 +22,6 @@ namespace PizzaShop.Testing.Business
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
-            AutoMapperBusinessConfiguration.RegisterMaps();
         }
 
         [Fact]
@@ -57,15 +55,15 @@ namespace PizzaShop.Testing.Business
 
             // Assert
             Assert.Equal(0.31M, model.VAT);
+            Assert.Equal(5.45M, model.Total);
         }
 
         [Fact]
-        public async Task NoInput_GetPizzaWithIngredientsAsync_ThrowsArgumentNullException()
+        public async Task WhenNoInput_GetPizzaWithIngredientsAsync_ThrowsArgumentNullException()
         {
             var code = _service.GetPizzaWithIngredientsAsync(0);
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await code);
         }
-
 
         private Pizza GetMockPizzaEntity()
         {

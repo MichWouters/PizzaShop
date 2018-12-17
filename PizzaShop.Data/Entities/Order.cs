@@ -9,11 +9,8 @@ namespace PizzaShop.Data.Entities
         [Key]
         public int OrderId { get; set; }
 
-        [Required]
         public virtual Customer Customer { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public bool IsDelivery { get; set; }
