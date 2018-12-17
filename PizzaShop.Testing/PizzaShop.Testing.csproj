@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Presentation\**" />
+    <EmbeddedResource Remove="Presentation\**" />
+    <None Remove="Presentation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Moq" Version="4.10.0" />
@@ -21,10 +27,6 @@
     <ProjectReference Include="..\PizzaShop.Business\PizzaShop.Business.csproj" />
     <ProjectReference Include="..\PizzaShop.Data\PizzaShop.Data.csproj" />
     <ProjectReference Include="..\PizzaShop\PizzaShop.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Presentation\" />
   </ItemGroup>
 
 </Project>

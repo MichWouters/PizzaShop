@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
+using AutoMapper;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
@@ -21,22 +22,16 @@ namespace PizzaShop.Business.Services
 
         public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int id)
         {
-            if (id == 0)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            int verifiedId = id;
-            Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
+            Pizza pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(id);
             PizzaModel pizzaModel = new PizzaModel();
-            pizzaModel = AutoMapper.Mapper.Map(pizza, pizzaModel);
+            pizzaModel = Mapper.Map(pizza, pizzaModel);
             
             return pizzaModel;
         }
 
         public async Task SavePizza(PizzaModel pizzaModel)
         {
-            Pizza pizzaEntity = AutoMapper.Mapper.Map<Pizza>(pizzaModel);
+            Pizza pizzaEntity = Mapper.Map<Pizza>(pizzaModel);
 
             // Todo: Verify security checks
 

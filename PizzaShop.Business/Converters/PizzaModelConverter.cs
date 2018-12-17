@@ -25,37 +25,20 @@ namespace PizzaShop.Business.Converters
             destination.PizzaId = source.PizzaId;
             destination.Price = source.Price;
             destination.VAT = CalculateVat(source.Price);
+            destination.Total = CalculateTotal(destination.Price, destination.VAT);
             destination.Ingredients = source.PizzaIngredients.Select(x => x.Ingredient).ToList();
 
             return destination;
         }
 
-        //private IEnumerable<Ingredient> MapIngredientToPizzaAsync(PizzaModel destination, IEnumerable<PizzaIngredient> PizzaIngredients)
-        //{
-        //    if (destination == null)
-        //        throw new ArgumentNullException(nameof(destination));
-
-        //    var ingredientList = new List<Ingredient>();
-
-        //    foreach (PizzaIngredient pizzaIngredient in PizzaIngredients)
-        //    {
-        //        if (pizzaIngredient.Ingredient == null)
-        //        {
-        //            var ingredient = _ingredientRepo.GetEntityAsync(pizzaIngredient.IngredientId).Result;
-        //            ingredientList.Add(ingredient);
-        //        }
-        //        else
-        //        {
-        //            ingredientList.Add(pizzaIngredient.Ingredient);
-        //        }
-        //    }
-
-        //    return ingredientList;
-        //}
-
         private decimal CalculateVat(decimal price, int precision = 2)
         {
             return Math.Round((price * 0.06M), precision);
+        }
+
+        private decimal CalculateTotal(decimal price, decimal vat, int precision = 2)
+        {
+            return Math.Round(price + vat, precision);
         }
     }
 }

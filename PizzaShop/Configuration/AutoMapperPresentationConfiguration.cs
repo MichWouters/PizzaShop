@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using PizzaShop.Business.Models;
 using PizzaShop.Converters;
-
 namespace PizzaShop.Configuration
 {
-    public static class AutoMapperPresentationConfiguration
+    public class AutoMapperPresentationProfile : Profile
     {
-        public static void RegisterMaps()
+        public AutoMapperPresentationProfile()
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<PizzaModel, PizzaDetailViewModel>()
+            CreateMap<PizzaModel, PizzaDetailViewModel>()
                     .ConvertUsing<PizzaViewModelConverter>();
-            });
+
+            CreateMap<IngredientModel, IngredientViewModel>()
+               .ReverseMap();
         }
     }
 }

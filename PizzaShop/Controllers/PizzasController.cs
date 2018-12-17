@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PizzaShop.Business.Models;
+using PizzaShop.Business.Services;
 using PizzaShop.Data;
 using PizzaShop.Data.Entities;
 using System.Linq;
 using System.Threading.Tasks;
-using PizzaShop.Business.Services;
-using PizzaShop.Business.Models;
 
 namespace PizzaShop.Controllers
 {
@@ -36,7 +37,7 @@ namespace PizzaShop.Controllers
 
             PizzaModel model = await _service.GetPizzaWithIngredientsAsync((int)id);
             PizzaDetailViewModel viewModel = new PizzaDetailViewModel();
-            viewModel = AutoMapper.Mapper.Map(model, viewModel);
+            viewModel = Mapper.Map(model, viewModel);
 
             if (viewModel == null)
             {
