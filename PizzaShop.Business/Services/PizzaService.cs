@@ -22,13 +22,7 @@ namespace PizzaShop.Business.Services
 
         public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int id)
         {
-            if (id == 0)
-            {
-                throw new ArgumentNullException(nameof(id));
-            }
-
-            int verifiedId = id;
-            Pizza pizza = await _pizzaRepo.GetEntityAsync(verifiedId);
+            Pizza pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(id);
             PizzaModel pizzaModel = new PizzaModel();
             pizzaModel = Mapper.Map(pizza, pizzaModel);
             
