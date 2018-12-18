@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using PizzaShop.Business.Services;
+using System.Threading.Tasks;
 
 namespace PizzaShop.ViewComponents
 {

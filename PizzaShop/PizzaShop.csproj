@@ -16,4 +16,8 @@
     <ProjectReference Include="..\PizzaShop.Business\PizzaShop.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\Cart\" />
+  </ItemGroup>
+
 </Project>
