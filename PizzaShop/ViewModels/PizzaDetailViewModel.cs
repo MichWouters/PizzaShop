@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PizzaShop.Business.Models
+namespace PizzaShop.ViewModels
 {
-    public class PizzaDetailViewModel : Model
+    public class PizzaDetailViewModel 
     {
         public int PizzaId { get; set; }
 
