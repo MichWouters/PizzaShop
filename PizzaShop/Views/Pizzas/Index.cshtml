@@ -20,6 +20,11 @@
     </div>
 
     <div class="col-md-3">
-        @await Component.InvokeAsync("Address")
+        <div class="row">
+            @await Component.InvokeAsync("Address")
+        </div>
+        <div class="row">
+            @await Component.InvokeAsync("Cart");
+        </div>
     </div>
 </div>
