@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace PizzaShop.ViewComponents
 {
-    public class ShoppingCartViewComponent : ViewComponent
+    public class CartViewComponent : ViewComponent
     {
         private List<CartItem> _shoppingCart;
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            string MyView = "ShoppingCart";
+            string MyView = "Cart";
             _shoppingCart = GetMockItems();
-            return View(MyView);
+            return View(MyView, _shoppingCart);
         }
 
         private List<CartItem> GetMockItems()
