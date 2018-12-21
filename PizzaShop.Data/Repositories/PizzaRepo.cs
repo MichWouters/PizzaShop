@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaShop.Data.Entities;
+using PizzaShop.Data.Repositories.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PizzaShop.Data.Repositories.Contracts;
 
 namespace PizzaShop.Data.Repositories
 {

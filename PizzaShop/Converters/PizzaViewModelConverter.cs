@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PizzaShop.Business.Models;
+using PizzaShop.ViewModels;
 using System.Linq;
 
 namespace PizzaShop.Converters

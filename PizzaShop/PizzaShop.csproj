@@ -16,4 +16,10 @@
     <ProjectReference Include="..\PizzaShop.Business\PizzaShop.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\Components\Cart\Cart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

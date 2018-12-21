@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PizzaShop.Data.Enums
+﻿namespace PizzaShop.Data.Enums
 {
     public enum Gender
     {

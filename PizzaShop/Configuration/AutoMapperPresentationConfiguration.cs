@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using PizzaShop.Business.Models;
 using PizzaShop.Converters;
+using PizzaShop.ViewModels;
+
 namespace PizzaShop.Configuration
 {
     public class AutoMapperPresentationProfile : Profile

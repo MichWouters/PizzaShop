@@ -2,6 +2,7 @@
 using PizzaShop.Business.Converters;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
+
 namespace PizzaShop.Configuration
 {
     public class AutoMapperBusinessProfile : Profile

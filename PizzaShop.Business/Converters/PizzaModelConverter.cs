@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
-using PizzaShop.Data.Repositories.Contracts;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace PizzaShop.Business.Converters

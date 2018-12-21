@@ -4,15 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-@foreach (var pizza in Model)
-{
+<div class="row" style="margin:auto; padding-top:2.5em;">
+    <div class="col-md-9">
+        @foreach (var pizza in Model)
+        {
+            <div class="card col-md-4">
+                <img class="card-img-top" src="@pizza.Image" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@pizza.Name</h5>
+                    <p class="card-text">@pizza.Description</p>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        }
+    </div>
 
-    <div class="card col-md-4">
-        <img class="card-img-top" src="@pizza.Image" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">@pizza.Name</h5>
-            <p class="card-text">@pizza.Description</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
+    <div class="col-md-2 col-md-offset-1">
+        <div class="row">
+            @await Component.InvokeAsync("Address")
+        </div>
+        <hr />
+        <div class="row">
+            @await Component.InvokeAsync("Cart");
         </div>
     </div>
-}
+</div>

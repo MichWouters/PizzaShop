@@ -2,9 +2,9 @@
 
 namespace PizzaShop.Business.Models
 {
-    public class IngredientModel: Model
+    public class IngredientModel : Model
     {
-        public int Id  { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -12,7 +12,6 @@ namespace PizzaShop.Business.Models
 
         public IngredientCategory Type { get; set; }
 
-        public bool IsOnPizza  { get; set; }
-
+        public bool IsOnPizza { get; set; }
     }
 }

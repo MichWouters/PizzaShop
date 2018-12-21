@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using PizzaShop.Business.Models;
 using PizzaShop.Data.Enums;
+using System.Collections.Generic;
 
-namespace PizzaShop.Business.Models
+namespace PizzaShop.ViewModels
 {
-    public class IngredientViewModel : Model
+    public class IngredientViewModel
     {
         public IngredientCategory Category { get; set; }
 
         public IEnumerable<IngredientModel> Ingredients { get; set; }
-
     }
 }
