@@ -29,20 +29,19 @@ namespace PizzaShop.ViewComponents
                         Price = 12.25M
                     },
                     Quantity = 3
-                }),
-            new CartItem
-            {
-                Pizza = new PizzaModel
-                {
-                    Name = "Pepperoni Lovers",
-                    Price = 12.25M
                 },
-                Quantity = 3
-            }
-            { }
-            
-            
-        
+                new CartItem
+                {
+                    Pizza = new PizzaModel
+                    {
+                        Name = "Pepperoni Lovers",
+                        Price = 12.25M
+                    },
+                    Quantity = 3
+                }
+            };
+            return list;
+        }
 
         // Todo: Items in service!
         public void AddItemToShoppingCart(CartItem pizza)

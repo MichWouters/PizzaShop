@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PizzaShop.ViewModels.CartItem>
+
+<h2>Shopping Cart</h2>
+<p>Please fill out your address for take out</p>
+<div class="row">
+    @foreach (var pizza in Model)
+    {
+        <div class="row">
+            <div class="col-md-9">
+                <h2>@pizza.Pizza.Name</h2>
+            </div>
+            <div class="col-md-3">
+                <h2>@pizza.Pizza.Price</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <input typ="button" title="-" />
+                <div>@pizza.Quantity</div>
+                <input typ="button" title="+" />
+            </div>
+            <div class="col-md-3">
+                <a href="#">Remove</a>
+            </div>
+        </div>
+        <hr />
+    }
+</div>

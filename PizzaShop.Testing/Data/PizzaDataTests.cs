@@ -17,7 +17,6 @@ namespace PizzaShop.Testing.Data
             _mockIngredientRepo = new Mock<IIngredientRepo>();
         }
 
-
         [Fact]
         public void When_Exception_Thrown_During_Save_Transaction_Should_RollBack()
         {

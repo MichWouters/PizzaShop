@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using PizzaShop.Data.Entities;
+﻿using PizzaShop.Data.Entities;
+using System.Threading.Tasks;
 
 namespace PizzaShop.Data.Repositories.Contracts
 {

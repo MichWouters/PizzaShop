@@ -22,6 +22,5 @@ namespace PizzaShop.Business.Models
         public IEnumerable<Ingredient> Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
-
     }
 }

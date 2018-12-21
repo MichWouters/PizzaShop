@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using PizzaShop.Business.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using PizzaShop.Business.Models;
 
 namespace PizzaShop.Business.Services
 {

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Transactions;
-using AutoMapper;
+﻿using AutoMapper;
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Transactions;
 
 namespace PizzaShop.Business.Services
 {
@@ -25,7 +25,7 @@ namespace PizzaShop.Business.Services
             Pizza pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(id);
             PizzaModel pizzaModel = new PizzaModel();
             pizzaModel = Mapper.Map(pizza, pizzaModel);
-            
+
             return pizzaModel;
         }
 

@@ -2,7 +2,7 @@
 
 namespace PizzaShop.ViewModels
 {
-    public class PizzaDetailViewModel 
+    public class PizzaDetailViewModel
     {
         public int PizzaId { get; set; }
 
