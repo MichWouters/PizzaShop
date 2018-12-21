@@ -36,9 +36,9 @@ namespace PizzaShop.Business.Services
                     Pizza = new PizzaModel
                     {
                         Name = "Pepperoni Lovers",
-                        Price = 12.25M
+                        Price = 16.25M
                     },
-                    Quantity = 3
+                    Quantity = 1
                 }
             };
             return list;

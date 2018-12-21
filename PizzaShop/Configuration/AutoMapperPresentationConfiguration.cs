@@ -14,6 +14,11 @@ namespace PizzaShop.Configuration
 
             CreateMap<IngredientModel, IngredientViewModel>()
                .ReverseMap();
+
+            CreateMap<CartModel, CartViewModel>()
+                .ForMember(x => x.Name, y => y.MapFrom(z => z.Pizza.Name))
+                .ForMember(x => x.Price, y => y.MapFrom(z => z.Pizza.Price))
+                .ReverseMap();
         }
     }
 }

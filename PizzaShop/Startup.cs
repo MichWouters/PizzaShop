@@ -50,7 +50,6 @@ namespace PizzaShop
             services.AddTransient<IPizzaRepo, PizzaRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
-            services.AddTransient<IIngredientService, IngredientsService>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
