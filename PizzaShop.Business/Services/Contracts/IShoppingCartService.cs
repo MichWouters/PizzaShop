@@ -5,6 +5,8 @@ namespace PizzaShop.Business.Services
 {
     public interface IShoppingCartService
     {
-        ObservableCollection<CartModel> ShoppingCart { get; set; }
+        ObservableCollection<CartModel> ShoppingCart { set; }
+
+        ObservableCollection<CartModel> GetItemsInCart();
     }
 }

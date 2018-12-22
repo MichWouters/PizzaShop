@@ -21,7 +21,8 @@ namespace PizzaShop.ViewComponents
         public IViewComponentResult Invoke()
         {
             string MyView = "Cart";
-            _shoppingCartVm = Mapper.Map<List<CartViewModel>>(_service.ShoppingCart);
+            var models = _service.GetItemsInCart();
+            _shoppingCartVm = Mapper.Map<List<CartViewModel>>(models);
 
             return View(MyView, _shoppingCartVm);
         }

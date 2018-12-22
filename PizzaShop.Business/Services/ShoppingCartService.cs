@@ -10,13 +10,17 @@ namespace PizzaShop.Business.Services
 
         public ObservableCollection<CartModel> ShoppingCart
         {
-            get { return _shoppingCart; }
             set { _shoppingCart = value; }
         }
 
         public ShoppingCartService()
         {
             ShoppingCart = new ObservableCollection<CartModel>(GetMockItems());
+        }
+
+        public ObservableCollection<CartModel> GetItemsInCart()
+        {
+            return _shoppingCart;
         }
 
         private IEnumerable<CartModel> GetMockItems()
