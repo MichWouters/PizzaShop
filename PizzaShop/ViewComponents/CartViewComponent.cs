@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PizzaShop.Business.Models;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using PizzaShop.Business.Services;
 using PizzaShop.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,44 +10,59 @@ namespace PizzaShop.ViewComponents
 {
     public class CartViewComponent : ViewComponent
     {
-        private List<CartItem> _shoppingCart;
+        private List<CartViewModel> _shoppingCartVm;
+        private IShoppingCartService _service;
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public CartViewComponent(IShoppingCartService service)
         {
-            string MyView = "Cart";
-            _shoppingCart = GetMockItems();
-            return View(MyView, _shoppingCart);
+            _service = service;
         }
 
-        private List<CartItem> GetMockItems()
+        public IViewComponentResult Invoke()
         {
-            var list = new List<CartItem>(){
-                new CartItem
-                {
-                    Pizza = new PizzaModel
-                    {
-                        Name = "Forestiere",
-                        Price = 12.25M
-                    },
-                    Quantity = 3
-                },
-                new CartItem
-                {
-                    Pizza = new PizzaModel
-                    {
-                        Name = "Pepperoni Lovers",
-                        Price = 12.25M
-                    },
-                    Quantity = 3
-                }
-            };
-            return list;
+            string MyView = "Cart";
+            _shoppingCartVm = Mapper.Map<List<CartViewModel>>(_service.ShoppingCart);
+
+            return View(MyView, _shoppingCartVm);
+        }
+
+        public void IncreaseQuantity(string name)
+        {
+            var currentPizza = GetCurrentItem(name);
+            currentPizza.Quantity++;
+            currentPizza.Price = CalculatePriceForPizza(currentPizza);
+        }
+
+        private decimal CalculatePriceForPizza(CartViewModel currentPizza, int precision = 2)
+        {
+            decimal price = currentPizza.Price * currentPizza.Quantity;
+
+            return Math.Round(price, precision);
+        }
+
+        public void DecreaseQuantity(string name)
+        {
+            var currentPizza = GetCurrentItem(name);
+
+            if (currentPizza.Quantity >= 1)
+            {
+                currentPizza.Quantity--;
+                currentPizza.Price = CalculatePriceForPizza(currentPizza);
+            }
+        }
+
+        private CartViewModel GetCurrentItem(string name)
+        {
+            int id = _shoppingCartVm.FindIndex(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            CartViewModel currentPizza = _shoppingCartVm[id];
+
+            return currentPizza;
         }
 
         // Todo: Items in service!
-        public void AddItemToShoppingCart(CartItem pizza)
+        public void AddItemToShoppingCart(CartViewModel pizza)
         {
-            _shoppingCart.Add(pizza);
+            throw new NotImplementedException();
         }
 
         public void ModifyQuantity(int id, int quantity)
@@ -59,7 +75,7 @@ namespace PizzaShop.ViewComponents
             throw new NotImplementedException();
         }
 
-        public List<CartItem> GetItemsInCart()
+        public List<CartViewModel> GetItemsInCart()
         {
             throw new NotImplementedException();
         }

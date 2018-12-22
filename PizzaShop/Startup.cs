@@ -23,7 +23,8 @@ namespace PizzaShop
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime.
+        // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -38,12 +39,18 @@ namespace PizzaShop
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Dependency Injection
+            SetUpDependencies(services);
+
+            // Set up AutoMapper
+            AutoMapperConfig.RegisterAutoMapper();
+        }
+
+        private void SetUpDependencies(IServiceCollection services)
+        {
             services.AddTransient<IPizzaRepo, PizzaRepo>();
             services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
-            services.AddTransient<IIngredientService, IngredientsService>();
-            // Set up AutoMapper
-            AutoMapperConfig.RegisterAutoMapper();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

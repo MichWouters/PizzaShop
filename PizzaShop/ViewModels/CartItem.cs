@@ -2,11 +2,13 @@
 
 namespace PizzaShop.ViewModels
 {
-    public class CartItem
+    public class CartViewModel
     {
         public int Id { get; set; }
 
-        public PizzaModel Pizza { get; set; }
+        public string Name { get; set; }
+
+        public decimal Price { get; set; }
 
         public int Quantity { get; set; }
     }
