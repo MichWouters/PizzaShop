@@ -5,15 +5,15 @@ using PizzaShop.ViewModels;
 
 namespace PizzaShop.Configuration
 {
-    public class AutoMapperPresentationProfile : Profile
+    public class AutoMapperViewModelProfile : Profile
     {
-        public AutoMapperPresentationProfile()
+        public AutoMapperViewModelProfile()
         {
             CreateMap<PizzaModel, PizzaDetailViewModel>()
                     .ConvertUsing<PizzaViewModelConverter>();
 
             CreateMap<IngredientModel, IngredientViewModel>()
-               .ReverseMap();
+               .ConvertUsing<IngredientViewModelConverter>();
 
             CreateMap<CartModel, CartViewModel>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Pizza.Name))

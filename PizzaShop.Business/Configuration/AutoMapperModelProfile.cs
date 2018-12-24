@@ -5,9 +5,9 @@ using PizzaShop.Data.Entities;
 
 namespace PizzaShop.Configuration
 {
-    public class AutoMapperBusinessProfile : Profile
+    public class AutoMapperModelProfile : Profile
     {
-        public AutoMapperBusinessProfile()
+        public AutoMapperModelProfile()
         {
             CreateMap<Pizza, PizzaModel>()
                     .ConvertUsing<PizzaModelConverter>();

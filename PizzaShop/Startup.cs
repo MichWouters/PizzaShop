@@ -51,6 +51,7 @@ namespace PizzaShop
             services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IIngredientService, IngredientService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
