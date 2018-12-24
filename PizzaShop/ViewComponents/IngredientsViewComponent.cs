@@ -21,13 +21,16 @@ namespace PizzaShop.ViewComponents
         {
             string MyView = "Ingredients";
             IEnumerable<IngredientModel> ingredientModels = await _service.GetIngredientsAsync();
-            var viewModels = from x in ingredientModels
-                             group x by x.Type into g
-                             select new IngredientViewModel
-                             {
-                                 Category = g.Key,
-                                 Ingredients = g.Where(y => y.Type == g.Key).ToList()
-                             };
+            IEnumerable<IngredientViewModel> viewModels = ingredientModels
+                .GroupBy(model => model.Type)
+                .Select(ingredient => new IngredientViewModel
+                {
+                    Category = ingredient.Key,
+                    Ingredients = ingredient
+                        .Where(y => y.Type == ingredient.Key)
+                        .OrderBy(z => z.Name)
+                        .ToList()
+                });
 
             return View(MyView, viewModels);
         }

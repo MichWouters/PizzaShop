@@ -1,6 +1,4 @@
-﻿using PizzaShop.Business.Models;
-
-namespace PizzaShop.ViewModels
+﻿namespace PizzaShop.ViewModels
 {
     public class CartViewModel
     {
