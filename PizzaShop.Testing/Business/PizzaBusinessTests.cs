@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using AutoMapper;
+using Moq;
 using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
+using PizzaShop.Configuration;
 using PizzaShop.Data.Entities;
 using PizzaShop.Data.Repositories.Contracts;
 using System;
@@ -22,15 +24,18 @@ namespace PizzaShop.Testing.Business
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
+
+            // Initialize AutoMapper
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperModelProfile>());
         }
 
         [Fact]
         public async Task Can_Map_PizzaModel_From_PizzaEntity()
         {
             // Arrange
-            _mockPizzaRepo.Setup(x => x.GetEntityAsync(
-                It.IsAny<int>()))
-                .ReturnsAsync(GetMockPizzaEntity());
+            _mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(It.IsAny<int?>(), It.IsAny<bool>()))
+                .ReturnsAsync(GetMockPizzaEntity);
 
             // Act
             PizzaModel model = await _service.GetPizzaWithIngredientsAsync(55);
@@ -46,9 +51,8 @@ namespace PizzaShop.Testing.Business
         public async Task Can_Calculate_ValuesCorrectly()
         {
             // Arrange
-            _mockPizzaRepo.Setup(x => x.GetEntityAsync(
-                It.IsAny<int>()))
-                .ReturnsAsync(GetMockPizzaEntity());
+            _mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(It.IsAny<int?>(), It.IsAny<bool>()))
+                .ReturnsAsync(GetMockPizzaEntity);
 
             // Act
             PizzaModel model = await _service.GetPizzaWithIngredientsAsync(55);
