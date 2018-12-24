@@ -13,7 +13,7 @@ namespace PizzaShop.Configuration
                     .ConvertUsing<PizzaModelConverter>();
 
             CreateMap<Ingredient, IngredientModel>()
-                   .ForMember(x => x.Id, y => y.MapFrom(z => z.IngredientId))
+                   .ForMember(x => x.IngredientId, y => y.MapFrom(z => z.IngredientId))
                    .ReverseMap();
         }
     }

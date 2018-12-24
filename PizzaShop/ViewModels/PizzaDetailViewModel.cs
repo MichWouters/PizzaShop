@@ -10,9 +10,10 @@ namespace PizzaShop.ViewModels
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [StringLength(500)]
         public string Description { get; set; }
 
+        [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
 
         [Range(3.99, 9.99)]
@@ -20,7 +21,5 @@ namespace PizzaShop.ViewModels
 
         [MinLength(2)]
         public string[] Ingredients { get; set; }
-
-        public bool IsAvailable { get; set; }
     }
 }

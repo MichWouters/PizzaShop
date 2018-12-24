@@ -19,7 +19,7 @@ namespace PizzaShop.Business.Models
 
         public decimal Total { get; internal set; }
 
-        public IEnumerable<Ingredient> Ingredients { get; set; }
+        public IEnumerable<IngredientModel> Ingredients { get; set; }
 
         public bool IsAvailable { get; set; }
     }

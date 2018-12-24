@@ -16,12 +16,12 @@ namespace PizzaShop.Controllers
         // Todo: Remove
         private readonly ApplicationDbContext _context;
 
-        private readonly IPizzaService _service;
+        private readonly IPizzaService _pizzaService;
 
         public PizzasController(ApplicationDbContext context, IPizzaService service)
         {
             _context = context;
-            _service = service;
+            _pizzaService = service;
         }
 
         public async Task<IActionResult> Index()
@@ -36,7 +36,7 @@ namespace PizzaShop.Controllers
                 return NotFound();
             }
 
-            PizzaModel model = await _service.GetPizzaWithIngredientsAsync((int)id);
+            PizzaModel model = await _pizzaService.GetPizzaWithIngredientsAsync((int)id);
             PizzaDetailViewModel viewModel = new PizzaDetailViewModel();
             viewModel = Mapper.Map(model, viewModel);
 
@@ -55,12 +55,13 @@ namespace PizzaShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PizzaId,Name,Image,Price,DateCreated,DateModified,ModifiedBy")] Pizza pizza)
+        public async Task<IActionResult> Create([Bind("PizzaId,Name,Image,Price, Ingredients")] PizzaDetailViewModel pizza)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pizza);
-                await _context.SaveChangesAsync();
+                PizzaModel pizzaModel = Mapper.Map<PizzaModel>(pizza);
+                await _pizzaService.SavePizza(pizzaModel);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(pizza);

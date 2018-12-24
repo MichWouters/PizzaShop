@@ -2,6 +2,7 @@
 using PizzaShop.Business.Models;
 using PizzaShop.Data.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PizzaShop.Business.Converters
@@ -24,14 +25,17 @@ namespace PizzaShop.Business.Converters
             destination.Price = source.Price;
             destination.VAT = CalculateVat(source.Price);
             destination.Total = CalculateTotal(destination.Price, destination.VAT);
-            destination.Ingredients = source.PizzaIngredients.Select(x => x.Ingredient).ToList();
+
+            IEnumerable<Ingredient> entities = source.PizzaIngredients.Select(x => x.Ingredient).ToList();
+            IEnumerable<IngredientModel> models = Mapper.Map<IEnumerable<IngredientModel>>(entities);
+            destination.Ingredients = models;
 
             return destination;
         }
 
         private decimal CalculateVat(decimal price, int precision = 2)
         {
-            return Math.Round((price * 0.06M), precision);
+            return Math.Round(price * 0.06M, precision);
         }
 
         private decimal CalculateTotal(decimal price, decimal vat, int precision = 2)
