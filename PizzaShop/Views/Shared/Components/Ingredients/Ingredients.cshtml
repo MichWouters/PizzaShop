@@ -1,16 +1,18 @@
-﻿using PizzaShop.Models
-@model IEnumerable<PizzaShop.ViewModels.IngredientViewModel>
+﻿@using PizzaShop.ViewModels;
+@using PizzaShop.Business.Models;
+@model IEnumerable<IngredientViewModel>
 
 <h2>Ingredients</h2>
-@foreach (var category in Model)
+@foreach (IngredientViewModel category in Model)
 {
     <div class="row">
-        <h3>@category.Category.ToString()</h3>
-        @foreach (var ingredient in category.Ingredients)
+        <h3><label>@category.Category</label></h3>
+        @foreach (IngredientModel ingredient in category.Ingredients)
         {
-            <div class="col-md-2">
-                <label asp-for="@ingredient.Name"></label>
-                <input asp-for="@ingredient.IsOnPizza" type="checkbox" data-toggle="toggle" class="form-control" />
+            <div class="checkbox">
+                <label class="checkbox-inline">
+                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary">
+                </label>
             </div>
         }
     </div>

@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
+using PizzaShop.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PizzaShop.ViewComponents
@@ -16,9 +20,16 @@ namespace PizzaShop.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             string MyView = "Ingredients";
-            var items = await _service.GetIngredientsAsync();
+            IEnumerable<IngredientModel> ingredientModels = await _service.GetIngredientsAsync();
+            var viewModels = from x in ingredientModels
+                             group x by x.Type into g
+                             select new IngredientViewModel
+                             {
+                                 Category = g.Key,
+                                 Ingredients = g.Where(y => y.Type == g.Key).ToList()
+                             };
 
-            return View(MyView, items);
+            return View(MyView, viewModels);
         }
     }
 }

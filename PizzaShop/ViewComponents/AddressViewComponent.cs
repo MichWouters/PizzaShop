@@ -10,7 +10,7 @@ namespace PizzaShop.ViewComponents
         {
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
             string MyView = "Address";
             var model = new AddressViewModel();

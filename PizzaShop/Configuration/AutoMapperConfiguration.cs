@@ -6,8 +6,8 @@
         {
             AutoMapper.Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<AutoMapperPresentationProfile>();
-                cfg.AddProfile<AutoMapperBusinessProfile>();
+                cfg.AddProfile<AutoMapperViewModelProfile>();
+                cfg.AddProfile<AutoMapperModelProfile>();
             });
         }
     }
