@@ -9,8 +9,7 @@ namespace PizzaShop.ViewModels
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        [StringLength(500)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         [DataType(DataType.ImageUrl)]

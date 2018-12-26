@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PizzaShop.Business.Models;
 using PizzaShop.Business.Services;
 using PizzaShop.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace PizzaShop.ViewComponents
 {
@@ -21,17 +21,10 @@ namespace PizzaShop.ViewComponents
         public IViewComponentResult Invoke()
         {
             string MyView = "Cart";
-            var models = _service.GetItemsInCart();
+            var models = this.GetItemsInCart();
             _shoppingCartVm = Mapper.Map<List<CartViewModel>>(models);
 
             return View(MyView, _shoppingCartVm);
-        }
-
-        public void IncreaseQuantity(string name)
-        {
-            var currentPizza = GetCurrentItem(name);
-            currentPizza.Quantity++;
-            currentPizza.Price = CalculatePriceForPizza(currentPizza);
         }
 
         private decimal CalculatePriceForPizza(CartViewModel currentPizza, int precision = 2)
@@ -39,6 +32,13 @@ namespace PizzaShop.ViewComponents
             decimal price = currentPizza.Price * currentPizza.Quantity;
 
             return Math.Round(price, precision);
+        }
+
+        public void IncreaseQuantity(string name)
+        {
+            var currentPizza = GetCurrentItem(name);
+            currentPizza.Quantity++;
+            currentPizza.Price = CalculatePriceForPizza(currentPizza);
         }
 
         public void DecreaseQuantity(string name)
@@ -60,25 +60,22 @@ namespace PizzaShop.ViewComponents
             return currentPizza;
         }
 
-        // Todo: Items in service!
-        public void AddItemToShoppingCart(CartViewModel pizza)
+        public void AddItemToShoppingCart(CartViewModel vm)
         {
-            throw new NotImplementedException();
+            CartModel model = Mapper.Map<CartModel>(vm);
+            _service.AddItemToCart(model);
         }
 
-        public void ModifyQuantity(int id, int quantity)
+        public void RemoveItemFromShoppingCart(CartViewModel vm)
         {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveItemFromShoppingCart()
-        {
-            throw new NotImplementedException();
+            CartModel model = Mapper.Map<CartModel>(vm);
+            _service.RemoveItemFromCart(model);
         }
 
         public List<CartViewModel> GetItemsInCart()
         {
-            throw new NotImplementedException();
+            // TODO
+            return new List<CartViewModel>();
         }
     }
 }

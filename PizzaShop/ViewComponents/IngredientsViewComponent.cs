@@ -21,6 +21,8 @@ namespace PizzaShop.ViewComponents
         {
             string MyView = "Ingredients";
             IEnumerable<IngredientModel> ingredientModels = await _service.GetIngredientsAsync();
+            
+            // TODO: Converter or Service?
             IEnumerable<IngredientViewModel> viewModels = ingredientModels
                 .GroupBy(model => model.Type)
                 .Select(ingredient => new IngredientViewModel
