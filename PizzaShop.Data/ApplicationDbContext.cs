@@ -26,6 +26,8 @@ namespace PizzaShop.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+
 
         // Fill Database with sample data
         private void SeedData(ModelBuilder builder)

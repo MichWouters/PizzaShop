@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PizzaShop.ViewModels;
-using System.Threading.Tasks;
 
 namespace PizzaShop.ViewComponents
 {

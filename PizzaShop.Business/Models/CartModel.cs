@@ -1,6 +1,6 @@
 ﻿namespace PizzaShop.Business.Models
 {
-    public class CartModel: Model
+    public class CartModel : Model
     {
         public int Id { get; set; }
 

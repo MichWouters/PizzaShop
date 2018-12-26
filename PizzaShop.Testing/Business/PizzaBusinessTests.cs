@@ -13,7 +13,7 @@ using Xunit;
 
 namespace PizzaShop.Testing.Business
 {
-    public class PizzaBusinessTests
+    public class PizzaBusinessTests: BusinessTests
     {
         private readonly IPizzaService _service;
         private readonly Mock<IPizzaRepo> _mockPizzaRepo;
@@ -24,17 +24,14 @@ namespace PizzaShop.Testing.Business
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
             _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
-
-            // Initialize AutoMapper
-            Mapper.Reset();
-            Mapper.Initialize(cfg => cfg.AddProfile<AutoMapperModelProfile>());
         }
 
         [Fact]
         public async Task Can_Map_PizzaModel_From_PizzaEntity()
         {
             // Arrange
-            _mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(It.IsAny<int?>(), It.IsAny<bool>()))
+            _mockPizzaRepo.Setup(x => x.GetPizzaWithIngredientsAsync(
+                It.IsAny<int?>(), It.IsAny<bool>()))
                 .ReturnsAsync(GetMockPizzaEntity);
 
             // Act
@@ -67,6 +64,24 @@ namespace PizzaShop.Testing.Business
         {
             var code = _service.GetPizzaWithIngredientsAsync(0);
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await code);
+        }
+
+        [Fact]
+        public void When_Exception_Thrown_During_Save_Transaction_Should_RollBack()
+        {
+            // Arrange
+            _mockPizzaRepo.Setup(x => x.AddEntityAsync(
+                    It.IsAny<Pizza>()))
+                .ReturnsAsync(1);
+
+            _mockIngredientRepo.Setup(x => x.PutIngredientsOnPizza(
+                It.IsAny<int>(), It.IsAny<int[]>())
+            ).ThrowsAsync(new Exception());
+
+            // Act
+            throw new NotImplementedException();
+
+            // Assert
         }
 
         private Pizza GetMockPizzaEntity()
