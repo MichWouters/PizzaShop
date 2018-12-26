@@ -55,7 +55,7 @@ namespace PizzaShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PizzaId,Name,Image,Price, Ingredients")] PizzaDetailViewModel pizza)
+        public async Task<IActionResult> Create([Bind("PizzaId,Name,Image,Price,Description,Ingredients")] PizzaDetailViewModel pizza)
         {
             if (ModelState.IsValid)
             {

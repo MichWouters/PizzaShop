@@ -26,7 +26,9 @@ namespace PizzaShop.ViewComponents
                              select new IngredientViewModel
                              {
                                  Category = g.Key,
-                                 Ingredients = g.Where(y => y.Type == g.Key).ToList()
+                                 Ingredients = g.Where(y => y.Type == g.Key)
+                                 .OrderBy(x => x.Name)
+                                 .ToList()
                              };
 
             return View(MyView, viewModels);
