@@ -13,25 +13,27 @@ namespace PizzaShop.Business.Services
     {
         private readonly IPizzaRepo _pizzaRepo;
         private readonly IIngredientRepo _ingredientRepo;
+        private readonly IMapper _mapper;
 
-        public PizzaService(IPizzaRepo pizzaRepo, IIngredientRepo ingredientRepo)
+        public PizzaService(IPizzaRepo pizzaRepo, IIngredientRepo ingredientRepo, IMapper mapper)
         {
             _pizzaRepo = pizzaRepo;
             _ingredientRepo = ingredientRepo;
+            _mapper = mapper;
         }
 
         public async Task<PizzaModel> GetPizzaWithIngredientsAsync(int id)
         {
             Pizza pizza = await _pizzaRepo.GetPizzaWithIngredientsAsync(id);
             PizzaModel pizzaModel = new PizzaModel();
-            pizzaModel = Mapper.Map(pizza, pizzaModel);
+            pizzaModel = _mapper.Map(pizza, pizzaModel);
 
             return pizzaModel;
         }
 
         public async Task SavePizza(PizzaModel pizzaModel)
         {
-            Pizza pizzaEntity = Mapper.Map<Pizza>(pizzaModel);
+            Pizza pizzaEntity = _mapper.Map<Pizza>(pizzaModel);
 
             // Todo: Verify security checks
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -42,7 +43,8 @@ namespace PizzaShop
             SetUpDependencies(services);
 
             // Set up AutoMapper
-            AutoMapperConfig.RegisterAutoMapper();
+            services.AddAutoMapper();
+            RegisterAutoMapper();
         }
 
         private void SetUpDependencies(IServiceCollection services)
@@ -80,6 +82,15 @@ namespace PizzaShop
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        private static void RegisterAutoMapper()
+        {
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<AutoMapperBusinessProfile>();
+                cfg.AddProfile<AutoMapperPresentationProfile>();
             });
         }
     }

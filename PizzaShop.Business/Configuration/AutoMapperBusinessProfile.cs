@@ -5,9 +5,9 @@ using PizzaShop.Data.Entities;
 
 namespace PizzaShop.Configuration
 {
-    public class AutoMapperModelProfile : Profile
+    public class AutoMapperBusinessProfile : Profile
     {
-        public AutoMapperModelProfile()
+        public AutoMapperBusinessProfile()
         {
             CreateMap<Pizza, PizzaModel>()
                     .ConvertUsing<PizzaModelConverter>();
@@ -21,7 +21,7 @@ namespace PizzaShop.Configuration
 
             CreateMap<Cart, CartModel>()
                 .ForMember(x => x.Id, y => y.MapFrom(z => z.PizzaId));
-            
+
         }
     }
 }

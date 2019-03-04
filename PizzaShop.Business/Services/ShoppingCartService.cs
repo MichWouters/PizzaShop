@@ -13,10 +13,12 @@ namespace PizzaShop.Business.Services
         private List<CartModel> _shoppingCart;
 
         private readonly IShoppingCartRepo _repo;
+        private readonly IMapper _mapper;
 
-        public ShoppingCartService(IShoppingCartRepo repo)
+        public ShoppingCartService(IShoppingCartRepo repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         public IEnumerable<CartModel> GetItemsInCart()
@@ -73,7 +75,7 @@ namespace PizzaShop.Business.Services
         private IEnumerable<CartModel> GetShoppingCartForUser()
         {
             IEnumerable<Cart> cart = _repo.GetShoppingCartForUser(-1);
-            var cartModel = Mapper.Map<IEnumerable<CartModel>>(cart);
+            var cartModel = _mapper.Map<IEnumerable<CartModel>>(cart);
 
             return cartModel;
         }

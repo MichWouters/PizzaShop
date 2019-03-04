@@ -15,13 +15,14 @@ namespace PizzaShop.Controllers
     {
         // Todo: Remove
         private readonly ApplicationDbContext _context;
-
         private readonly IPizzaService _pizzaService;
+        private readonly IMapper _mapper;
 
-        public PizzasController(ApplicationDbContext context, IPizzaService service)
+        public PizzasController(ApplicationDbContext context, IPizzaService service, IMapper mapper)
         {
             _context = context;
             _pizzaService = service;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -38,7 +39,7 @@ namespace PizzaShop.Controllers
 
             PizzaModel model = await _pizzaService.GetPizzaWithIngredientsAsync((int)id);
             PizzaDetailViewModel viewModel = new PizzaDetailViewModel();
-            viewModel = Mapper.Map(model, viewModel);
+            viewModel = _mapper.Map(model, viewModel);
 
             if (viewModel == null)
             {
@@ -59,7 +60,7 @@ namespace PizzaShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                PizzaModel pizzaModel = Mapper.Map<PizzaModel>(pizza);
+                PizzaModel pizzaModel = _mapper.Map<PizzaModel>(pizza);
                 await _pizzaService.SavePizza(pizzaModel);
 
                 return RedirectToAction(nameof(Index));

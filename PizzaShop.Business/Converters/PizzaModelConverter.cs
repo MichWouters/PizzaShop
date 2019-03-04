@@ -27,8 +27,10 @@ namespace PizzaShop.Business.Converters
             destination.Total = CalculateTotal(destination.Price, destination.VAT);
 
             IEnumerable<Ingredient> entities = source.PizzaIngredients.Select(x => x.Ingredient).ToList();
-            IEnumerable<IngredientModel> models = Mapper.Map<IEnumerable<IngredientModel>>(entities);
-            destination.Ingredients = models;
+
+            // TODO: This does not belong here
+            //IEnumerable<IngredientModel> models = Mapper.Map<IEnumerable<IngredientModel>>(entities);
+            //destination.Ingredients = models;
 
             return destination;
         }

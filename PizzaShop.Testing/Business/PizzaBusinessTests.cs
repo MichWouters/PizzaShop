@@ -13,7 +13,7 @@ using Xunit;
 
 namespace PizzaShop.Testing.Business
 {
-    public class PizzaBusinessTests: BusinessTests
+    public class PizzaBusinessTests
     {
         private readonly IPizzaService _service;
         private readonly Mock<IPizzaRepo> _mockPizzaRepo;
@@ -21,9 +21,18 @@ namespace PizzaShop.Testing.Business
 
         public PizzaBusinessTests()
         {
+            // Initialize AutoMapper for Unit Tests
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<AutoMapperBusinessProfile>();
+            });
+
+            IMapper mapper = config.CreateMapper();
+
+            // Initialize Service with Dependencies
             _mockPizzaRepo = new Mock<IPizzaRepo>();
             _mockIngredientRepo = new Mock<IIngredientRepo>();
-            _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object);
+            _service = new PizzaService(_mockPizzaRepo.Object, _mockIngredientRepo.Object, mapper);
         }
 
         [Fact]
