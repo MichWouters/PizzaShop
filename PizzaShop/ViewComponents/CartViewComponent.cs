@@ -12,17 +12,18 @@ namespace PizzaShop.ViewComponents
     {
         private List<CartViewModel> _shoppingCartVm;
         private IShoppingCartService _service;
-
-        public CartViewComponent(IShoppingCartService service)
+        private IMapper _mapper;
+        public CartViewComponent(IShoppingCartService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         public IViewComponentResult Invoke()
         {
             string MyView = "Cart";
             var models = this.GetItemsInCart();
-            _shoppingCartVm = Mapper.Map<List<CartViewModel>>(models);
+            _shoppingCartVm = _mapper.Map<List<CartViewModel>>(models);
 
             return View(MyView, _shoppingCartVm);
         }
@@ -62,13 +63,13 @@ namespace PizzaShop.ViewComponents
 
         public void AddItemToShoppingCart(CartViewModel vm)
         {
-            CartModel model = Mapper.Map<CartModel>(vm);
+            CartModel model = _mapper.Map<CartModel>(vm);
             _service.AddItemToCart(model);
         }
 
         public void RemoveItemFromShoppingCart(CartViewModel vm)
         {
-            CartModel model = Mapper.Map<CartModel>(vm);
+            CartModel model = _mapper.Map<CartModel>(vm);
             _service.RemoveItemFromCart(model);
         }
 

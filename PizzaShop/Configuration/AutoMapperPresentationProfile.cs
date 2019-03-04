@@ -5,9 +5,9 @@ using PizzaShop.ViewModels;
 
 namespace PizzaShop.Configuration
 {
-    public class AutoMapperViewModelProfile : Profile
+    public class AutoMapperPresentationProfile : Profile
     {
-        public AutoMapperViewModelProfile()
+        public AutoMapperPresentationProfile()
         {
             CreateMap<PizzaModel, PizzaDetailViewModel>()
                     .ConvertUsing<PizzaViewModelConverter>();

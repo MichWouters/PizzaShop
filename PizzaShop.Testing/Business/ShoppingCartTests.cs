@@ -11,15 +11,25 @@ using Xunit;
 
 namespace PizzaShop.Testing.Business
 {
-    public class ShoppingCartTests: BusinessTests
+    public class ShoppingCartTests
     {
         private Mock<IShoppingCartRepo> _repo;
         private IShoppingCartService _service;
 
         public ShoppingCartTests()
         {
+            // Initialize AutoMapper for Unit Tests
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<AutoMapperBusinessProfile>();
+            });
+
+            IMapper mapper = config.CreateMapper();
+
+            // Initialize Service with Dependencies
+
             _repo = new Mock<IShoppingCartRepo>();
-            _service = new ShoppingCartService(_repo.Object);
+            _service = new ShoppingCartService(_repo.Object, mapper);
         }
 
         [Fact]
