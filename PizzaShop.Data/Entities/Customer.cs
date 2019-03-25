@@ -4,9 +4,11 @@ namespace PizzaShop.Data.Entities
 {
     public class Customer : Entity
     {
+
         [Key]
         public int CustomerId { get; set; }
 
+        // TODO: No data annotations in data layer
         [Required]
         public string Name { get; set; }
 
