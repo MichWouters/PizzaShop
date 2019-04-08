@@ -2,6 +2,7 @@
 using PizzaShop.Business.Models;
 using PizzaShop.Converters;
 using PizzaShop.ViewModels;
+using System.Linq;
 
 namespace PizzaShop.Configuration
 {
@@ -10,10 +11,12 @@ namespace PizzaShop.Configuration
         public AutoMapperPresentationProfile()
         {
             CreateMap<PizzaModel, PizzaDetailViewModel>()
-                    .ConvertUsing<PizzaViewModelConverter>();
+                .ForMember(x => x.Ingredients, y => y.MapFrom(z => z.Ingredients.Select(x => x.Name).ToArray()))
+                .ForMember(x => x.Image, y => y.MapFrom(z => "../../images/" + z.Image))
+                .ReverseMap();
 
             CreateMap<IngredientModel, IngredientViewModel>()
-               .ConvertUsing<IngredientViewModelConverter>();
+                .ReverseMap();
 
             CreateMap<CartModel, CartViewModel>()
                 .ForMember(x => x.Name, y => y.MapFrom(z => z.Pizza.Name))

@@ -15,7 +15,7 @@ namespace PizzaShop.ViewModels
         [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
 
-        [Range(3.99, 9.99)]
+        [Range(3.99, 19.99)]
         public decimal Price { get; set; }
 
         [MinLength(2)]

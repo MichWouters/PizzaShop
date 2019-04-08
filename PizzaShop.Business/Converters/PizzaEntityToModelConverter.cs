@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace PizzaShop.Business.Converters
 {
-    public class PizzaModelConverter : ITypeConverter<Pizza, PizzaModel>
+    public class PizzaEntityToModelConverter : ITypeConverter<Pizza, PizzaModel>
     {
         public PizzaModel Convert(Pizza source, PizzaModel destination, ResolutionContext context)
         {
@@ -29,8 +29,8 @@ namespace PizzaShop.Business.Converters
             IEnumerable<Ingredient> entities = source.PizzaIngredients.Select(x => x.Ingredient).ToList();
 
             // TODO: This does not belong here
-            //IEnumerable<IngredientModel> models = Mapper.Map<IEnumerable<IngredientModel>>(entities);
-            //destination.Ingredients = models;
+            IEnumerable<IngredientModel> models = Mapper.Map<IEnumerable<IngredientModel>>(entities);
+            destination.Ingredients = models;
 
             return destination;
         }

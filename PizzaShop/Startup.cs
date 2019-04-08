@@ -50,11 +50,11 @@ namespace PizzaShop
         private void SetUpDependencies(IServiceCollection services)
         {
             services.AddTransient<IPizzaRepo, PizzaRepo>();
-            services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IPizzaService, PizzaService>();
-            services.AddTransient<IShoppingCartService, ShoppingCartService>();
+            services.AddTransient<IIngredientRepo, IngredientRepo>();
             services.AddTransient<IIngredientService, IngredientService>();
             services.AddTransient<IShoppingCartRepo, ShoppingCartRepo>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +87,7 @@ namespace PizzaShop
 
         private static void RegisterAutoMapper()
         {
-            AutoMapper.Mapper.Initialize(cfg =>
+            Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<AutoMapperBusinessProfile>();
                 cfg.AddProfile<AutoMapperPresentationProfile>();
