@@ -27,7 +27,6 @@ namespace PizzaShop.Testing.Business
             IMapper mapper = config.CreateMapper();
 
             // Initialize Service with Dependencies
-
             _repo = new Mock<IShoppingCartRepo>();
             _service = new ShoppingCartService(_repo.Object, mapper);
         }

@@ -10,7 +10,7 @@ namespace PizzaShop.Configuration
         public AutoMapperBusinessProfile()
         {
             CreateMap<Pizza, PizzaModel>()
-                    .ConvertUsing<PizzaModelConverter>();
+                    .ConvertUsing<PizzaEntityToModelConverter>();
 
             CreateMap<Ingredient, IngredientModel>()
                    .ForMember(x => x.IngredientId, y => y.MapFrom(z => z.IngredientId))
